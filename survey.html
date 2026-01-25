@@ -224,37 +224,50 @@
 
   <script src="app.js"></script>
   <script>
-    Ginseng.initLangButtons();
-    Ginseng.renderI18n();
+  Ginseng.initLangButtons();
+  Ginseng.renderI18n();
 
-    document.querySelectorAll("[data-scale]").forEach(btn => {
-      btn.addEventListener("click", () => Ginseng.setScale(btn.dataset.scale, btn.dataset.value));
+  // Likert dots
+  document.querySelectorAll("button.dot[data-scale]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      Ginseng.setScale(btn.dataset.scale, btn.dataset.value);
     });
+  });
 
-    document.getElementById("surveyForm").addEventListener("submit", (e) => {
-      e.preventDefault();
+  document.getElementById("surveyForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-      const data = Ginseng.collectForm();
+    const data = Ginseng.collectForm(document.getElementById("surveyForm"));
 
-      const missing = ["q6_tooCheap","q7_goodValue","q8_expOk","q9_tooExp"].filter(k => !data[k]);
-      if (missing.length) {
-        alert(Ginseng.t({vi:"Vui lòng chọn đủ phần giá (Q6–Q9).", en:"Please answer the price scale (Q6–Q9)."}));
-        return;
-      }
+    // required: Q6–Q9 must be answered (hidden inputs must be set)
+    const missing = ["q6_tooCheap","q7_goodValue","q8_expOk","q9_tooExp"].filter(k => !data[k]);
+    if (missing.length) {
+      alert(Ginseng.t({vi:"Vui lòng chọn đủ phần giá (Q6–Q9).", en:"Please answer the price scale (Q6–Q9)."}));
+      return;
+    }
 
-      const payload = {
-        id: Ginseng.uuid(),
-        ts: new Date().toISOString(),
-        lang: localStorage.getItem("ginseng_lang") || "vi",
-        params: Object.fromEntries(new URLSearchParams(window.location.search).entries()),
-        answers: data
-      };
+    const payload = {
+      id: Ginseng.uuid(),
+      ts: new Date().toISOString(),
+      lang: localStorage.getItem("ginseng_lang") || "vi",
+      params: Object.fromEntries(new URLSearchParams(window.location.search).entries()),
+      answers: data
+    };
 
-      Ginseng.saveResponse(payload);
+    try {
+      await Ginseng.saveResponse(payload);
       console.log("Saved response:", payload);
 
-      window.location.href = "thanks.html?" + Ginseng.keepParams({rid: payload.id});
-    });
-  </script>
+      window.location.href = "thanks.html?" + Ginseng.keepParams({ rid: payload.id });
+    } catch (err) {
+      console.error(err);
+      alert(Ginseng.t({
+        vi:"Lưu dữ liệu thất bại. Vui lòng thử lại.",
+        en:"Saving failed. Please try again."
+      }));
+    }
+  });
+</script>
+
 </body>
 </html>
