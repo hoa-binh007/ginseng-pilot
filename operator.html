@@ -5,30 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Pilot vor Ort – Ablauf</title>
   <style>
-    body {
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      margin: 20px;
-      line-height: 1.45;
-    }
-    h1 { margin-bottom: 8px; }
-    h2 { margin-top: 22px; }
-    .box {
-      border: 1px solid #333;
-      border-radius: 10px;
-      padding: 14px;
-      margin: 14px 0;
-    }
-    ul, ol { padding-left: 18px; }
-    .small { font-size: 0.9em; color: #444; }
-    .important { font-weight: 600; }
-    .lang-switch button {
-      margin-right: 6px;
-      padding: 6px 10px;
-      border-radius: 6px;
-      border: 1px solid #333;
-      background: #f4f4f4;
-      cursor: pointer;
-    }
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 20px; line-height: 1.45; }
+    .lang-switch button { margin-right: 6px; padding: 6px 10px; border-radius: 6px; border: 1px solid #333; background: #f4f4f4; cursor: pointer; }
+    .box { border: 1px solid #333; border-radius: 10px; padding: 14px; margin: 14px 0; }
     .lang { display: none; }
     .lang.active { display: block; }
   </style>
@@ -41,118 +20,73 @@
   <button onclick="setLang('vi')">VI</button>
 </div>
 
-<!-- ================= DE ================= -->
 <div class="lang active" id="lang-de">
-<h1>Pilot vor Ort – Ablauf Feldstudie</h1>
-
-<div class="box">
-  <p class="important">Ziel</p>
-  <p>Kurzfeedback zum Getränk direkt <b>während des Trinkens</b>. Dauer: ca. <b>1–2 Minuten</b>.</p>
+  <h1>Pilot vor Ort – Ablauf Feldstudie</h1>
+  <div class="box"><b>Ziel:</b> Feedback <b>während des Trinkens</b>. Dauer: <b>1–2 Minuten</b>.</div>
+  <div class="box">
+    <b>Vorbereitung:</b>
+    <ul>
+      <li>QR-Code sichtbar neben der Maschine</li>
+      <li>Neutral bleiben (kein Verkaufsgespräch)</li>
+      <li>Keine Preise nennen</li>
+    </ul>
+  </div>
+  <div class="box">
+    <b>Ablauf pro Person:</b>
+    <ol>
+      <li>Getränk ausgeben (heiß/warm)</li>
+      <li>Sagen: „Bitte QR-Code scannen und während des Trinkens ausfüllen.“</li>
+      <li>QR-Code → survey öffnet</li>
+      <li>Optional: Role/City auswählen (wenn gewünscht)</li>
+      <li>Submit → fertig</li>
+    </ol>
+  </div>
 </div>
 
-<h2>1. Vorbereitung</h2>
-<div class="box">
-  <ul>
-    <li>Maschine betriebsbereit</li>
-    <li>QR-Code sichtbar neben der Maschine</li>
-    <li>Keinen Preis nennen</li>
-    <li>Neutral bleiben</li>
-  </ul>
-</div>
-
-<h2>2. Ablauf pro Person</h2>
-<div class="box">
-  <ol>
-    <li>Getränk ausgeben (heiß/warm)</li>
-    <li>Sagen: <i>„Bitte QR-Code scannen und während des Trinkens ausfüllen.“</i></li>
-    <li>QR-Code → Fragebogen öffnet sich</li>
-    <li>Standort erlauben</li>
-    <li>Während des Trinkens beantworten</li>
-    <li>Submit → fertig</li>
-  </ol>
-</div>
-
-<h2>Regeln</h2>
-<div class="box">
-  <b>Do:</b> freundlich, ruhig<br>
-  <b>Don’t:</b> keine Preise, keine Erklärungen, keine Diskussion
-</div>
-</div>
-
-<!-- ================= EN ================= -->
 <div class="lang" id="lang-en">
-<h1>On-site Pilot – Field Procedure</h1>
-
-<div class="box">
-  <p class="important">Goal</p>
-  <p>Collect short feedback <b>while drinking</b>. Duration: <b>1–2 minutes</b>.</p>
+  <h1>On-site Pilot – Field Procedure</h1>
+  <div class="box"><b>Goal:</b> Feedback <b>while drinking</b>. Duration: <b>1–2 minutes</b>.</div>
+  <div class="box">
+    <b>Preparation:</b>
+    <ul>
+      <li>QR code visible next to the machine</li>
+      <li>Stay neutral (no selling)</li>
+      <li>Do not mention prices</li>
+    </ul>
+  </div>
+  <div class="box">
+    <b>Per person:</b>
+    <ol>
+      <li>Serve drink (hot/warm)</li>
+      <li>Say: “Please scan the QR code and answer while drinking.”</li>
+      <li>QR code → survey opens</li>
+      <li>Optional: select Role/City</li>
+      <li>Submit → done</li>
+    </ol>
+  </div>
 </div>
 
-<h2>1. Preparation</h2>
-<div class="box">
-  <ul>
-    <li>Machine ready</li>
-    <li>QR code visible next to the machine</li>
-    <li>Do not mention prices</li>
-    <li>Stay neutral</li>
-  </ul>
-</div>
-
-<h2>2. Procedure per person</h2>
-<div class="box">
-  <ol>
-    <li>Serve the drink (hot/warm)</li>
-    <li>Say: <i>“Please scan the QR code and fill out the survey while drinking.”</i></li>
-    <li>QR code → survey opens</li>
-    <li>Allow location access</li>
-    <li>Answer while drinking</li>
-    <li>Submit → done</li>
-  </ol>
-</div>
-
-<h2>Rules</h2>
-<div class="box">
-  <b>Do:</b> friendly, calm<br>
-  <b>Don’t:</b> no prices, no explanations, no discussions
-</div>
-</div>
-
-<!-- ================= VI ================= -->
 <div class="lang" id="lang-vi">
-<h1>Thử nghiệm tại chỗ – Quy trình</h1>
-
-<div class="box">
-  <p class="important">Mục tiêu</p>
-  <p>Thu thập phản hồi ngắn <b>trong khi uống</b>. Thời gian: <b>1–2 phút</b>.</p>
-</div>
-
-<h2>1. Chuẩn bị</h2>
-<div class="box">
-  <ul>
-    <li>Máy hoạt động sẵn sàng</li>
-    <li>Mã QR đặt cạnh máy, dễ thấy</li>
-    <li>Không nói về giá</li>
-    <li>Giữ thái độ trung lập</li>
-  </ul>
-</div>
-
-<h2>2. Quy trình cho mỗi người</h2>
-<div class="box">
-  <ol>
-    <li>Phục vụ đồ uống (nóng/ấm)</li>
-    <li>Nói: <i>“Vui lòng quét mã QR và trả lời khi đang uống.”</i></li>
-    <li>Quét QR → mở bảng hỏi</li>
-    <li>Cho phép vị trí</li>
-    <li>Trả lời khi đang uống</li>
-    <li>Gửi → xong</li>
-  </ol>
-</div>
-
-<h2>Quy tắc</h2>
-<div class="box">
-  <b>Nên:</b> thân thiện, bình tĩnh<br>
-  <b>Không nên:</b> không nói giá, không giải thích, không tranh luận
-</div>
+  <h1>Thử nghiệm tại chỗ – Quy trình</h1>
+  <div class="box"><b>Mục tiêu:</b> Phản hồi <b>khi đang uống</b>. Thời gian: <b>1–2 phút</b>.</div>
+  <div class="box">
+    <b>Chuẩn bị:</b>
+    <ul>
+      <li>Mã QR đặt cạnh máy, dễ thấy</li>
+      <li>Giữ thái độ trung lập (không bán hàng)</li>
+      <li>Không nói về giá</li>
+    </ul>
+  </div>
+  <div class="box">
+    <b>Cho mỗi người:</b>
+    <ol>
+      <li>Phục vụ đồ uống (nóng/ấm)</li>
+      <li>Nói: “Vui lòng quét QR và trả lời khi đang uống.”</li>
+      <li>Quét QR → mở khảo sát</li>
+      <li>Tùy chọn: chọn Role/City</li>
+      <li>Gửi → xong</li>
+    </ol>
+  </div>
 </div>
 
 <script>
