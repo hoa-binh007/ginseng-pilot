@@ -122,7 +122,7 @@ function collectForm(formEl = document.getElementById("surveyForm")) {
 
 // ===== Saving =====
 // 1) Set this when ready (Realtime DB URL without trailing slash)
-const FIREBASE_DB_URL = ""; // e.g. "https://xxxx.europe-west1.firebasedatabase.app"
+const FIREBASE_DB_URL = "https://rote-ginseng-vn-default-rtdb.europe-west1.firebasedatabase.app";
 const FIREBASE_PATH = "ginseng_pilot_responses";
 
 async function saveResponse(payload) {
