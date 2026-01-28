@@ -17,6 +17,7 @@
       </div>
     </div>
 
+    <!-- META (optional) -->
     <div class="pilot-meta" style="margin:12px 0; padding:12px; border:1px solid #333; border-radius:10px;">
       <div style="display:flex; gap:10px; flex-wrap:wrap;">
         <label style="flex:1; min-width:160px;">
@@ -45,8 +46,13 @@
     </div>
 
     <div class="card">
-      <h1 data-de="Schnellumfrage (14 Fragen)" data-vi="Khảo sát nhanh (14 câu)" data-en="Quick survey (14 questions)"></h1>
-      <p data-de="Anonym. Schnell tippen." data-vi="Chọn nhanh. Ẩn danh." data-en="Tap quickly. Anonymous."></p>
+      <h1 data-de="Schnellumfrage (14 Fragen + 2 optionale Angaben)"
+          data-vi="Khảo sát nhanh (14 câu + 2 mục tùy chọn)"
+          data-en="Quick survey (14 questions + 2 optional fields)"></h1>
+
+      <p data-de="Anonym. Schnell tippen."
+         data-vi="Chọn nhanh. Ẩn danh."
+         data-en="Tap quickly. Anonymous."></p>
 
       <form id="surveyForm">
 
@@ -100,11 +106,19 @@
           </div>
         </div>
 
+        <!-- PART B -->
         <h2 data-de="TEIL B – PREIS & WERT" data-vi="PHẦN B – GIÁ & GIÁ TRỊ" data-en="PART B – PRICE & VALUE"></h2>
+        <p class="small"
+           data-de="Stimme den Aussagen zu (1 = gar nicht, 5 = vollkommen)."
+           data-vi="Mức độ đồng ý (1 = không đồng ý, 5 = hoàn toàn đồng ý)."
+           data-en="Rate your agreement (1 = disagree, 5 = strongly agree)."></p>
 
-        <div class="q">
-          <div class="q-title" data-de="Q6. Zu billig (Zweifel an Qualität)" data-vi="Q6. Quá rẻ để tin tưởng" data-en="Q6. Too cheap to trust"></div>
-          <input type="hidden" name="q6_tooCheap" value="" required>
+        <div class="q" data-qscale="q6_tooCheap">
+          <div class="q-title"
+               data-de="Q6. Der Preis wirkt so niedrig, dass ich an der Qualität zweifle."
+               data-vi="Q6. Giá có vẻ quá thấp khiến tôi nghi ngờ về chất lượng."
+               data-en="Q6. The price seems so low that I doubt the quality."></div>
+          <input type="hidden" name="q6_tooCheap" value="">
           <div class="scale">
             <button class="dot" type="button" data-scale="q6_tooCheap" data-value="1">1</button>
             <button class="dot" type="button" data-scale="q6_tooCheap" data-value="2">2</button>
@@ -114,9 +128,12 @@
           </div>
         </div>
 
-        <div class="q">
-          <div class="q-title" data-de="Q7. Gutes Preis-Leistungs-Verhältnis" data-vi="Q7. Giá đáng tiền" data-en="Q7. Good value"></div>
-          <input type="hidden" name="q7_goodValue" value="" required>
+        <div class="q" data-qscale="q7_goodValue">
+          <div class="q-title"
+               data-de="Q7. Für die erwartete Qualität ist der Preis fair."
+               data-vi="Q7. Với chất lượng tôi kỳ vọng, mức giá này là hợp lý."
+               data-en="Q7. For the quality I expect, the price is fair."></div>
+          <input type="hidden" name="q7_goodValue" value="">
           <div class="scale">
             <button class="dot" type="button" data-scale="q7_goodValue" data-value="1">1</button>
             <button class="dot" type="button" data-scale="q7_goodValue" data-value="2">2</button>
@@ -126,9 +143,12 @@
           </div>
         </div>
 
-        <div class="q">
-          <div class="q-title" data-de="Q8. Teuer, aber akzeptabel" data-vi="Q8. Hơi đắt nhưng vẫn mua" data-en="Q8. Expensive but acceptable"></div>
-          <input type="hidden" name="q8_expOk" value="" required>
+        <div class="q" data-qscale="q8_expOk">
+          <div class="q-title"
+               data-de="Q8. Der Preis wirkt eher hoch – ich würde es trotzdem kaufen."
+               data-vi="Q8. Giá có vẻ hơi cao – nhưng tôi vẫn sẽ mua."
+               data-en="Q8. The price seems rather high – but I would still buy it."></div>
+          <input type="hidden" name="q8_expOk" value="">
           <div class="scale">
             <button class="dot" type="button" data-scale="q8_expOk" data-value="1">1</button>
             <button class="dot" type="button" data-scale="q8_expOk" data-value="2">2</button>
@@ -138,9 +158,12 @@
           </div>
         </div>
 
-        <div class="q">
-          <div class="q-title" data-de="Q9. Zu teuer zum Kaufen" data-vi="Q9. Quá đắt, không mua" data-en="Q9. Too expensive to buy"></div>
-          <input type="hidden" name="q9_tooExp" value="" required>
+        <div class="q" data-qscale="q9_tooExp">
+          <div class="q-title"
+               data-de="Q9. Der Preis ist so hoch, dass ich es nicht kaufen würde."
+               data-vi="Q9. Giá cao đến mức tôi sẽ không mua."
+               data-en="Q9. The price is so high that I would not buy it."></div>
+          <input type="hidden" name="q9_tooExp" value="">
           <div class="scale">
             <button class="dot" type="button" data-scale="q9_tooExp" data-value="1">1</button>
             <button class="dot" type="button" data-scale="q9_tooExp" data-value="2">2</button>
@@ -150,6 +173,7 @@
           </div>
         </div>
 
+        <!-- PART C -->
         <h2 data-de="TEIL C – KAUFVERHALTEN" data-vi="PHẦN C – MUA HÀNG" data-en="PART C – BUYING"></h2>
 
         <div class="q">
@@ -181,6 +205,7 @@
           </div>
         </div>
 
+        <!-- PART D -->
         <h2 data-de="TEIL D – OPTIONAL" data-vi="PHẦN D – TÙY CHỌN" data-en="PART D – OPTIONAL"></h2>
 
         <div class="q">
@@ -193,7 +218,7 @@
           </div>
         </div>
 
-        <div class="q">
+        <div class="q" data-qscale="q14_spend">
           <div class="q-title" data-de="Q14. Ausgaben für Gesundheit / Monat" data-vi="Q14. Chi cho sức khỏe / tháng" data-en="Q14. Health spending / month"></div>
           <input type="hidden" name="q14_spend" value="">
           <div class="scale">
@@ -217,21 +242,83 @@
     Ginseng.initLangButtons();
     Ginseng.renderI18n();
 
+    // Robust: handle scale clicks + active state
+    function setScaleActive(scaleName, value) {
+      const hidden = document.querySelector('input[name="' + scaleName + '"]');
+      if (hidden) hidden.value = String(value);
+
+      // active class toggling (works even without CSS; you can style .dot.active later)
+      document.querySelectorAll('button.dot[data-scale="' + scaleName + '"]').forEach(b => {
+        if (b.dataset.value === String(value)) b.classList.add("active");
+        else b.classList.remove("active");
+      });
+    }
+
     document.querySelectorAll("button.dot[data-scale]").forEach(btn => {
       btn.addEventListener("click", () => {
-        Ginseng.setScale(btn.dataset.scale, btn.dataset.value);
+        // keep your original API call if it exists
+        if (typeof Ginseng.setScale === "function") {
+          Ginseng.setScale(btn.dataset.scale, btn.dataset.value);
+        }
+        // ensure robustness even if Ginseng.setScale is buggy
+        setScaleActive(btn.dataset.scale, btn.dataset.value);
       });
     });
 
+    function firstMissingScale(formEl, requiredScales) {
+      for (const name of requiredScales) {
+        const hidden = formEl.querySelector('input[name="' + name + '"]');
+        if (!hidden) continue;
+        if (!hidden.value) return name;
+      }
+      return null;
+    }
+
+    function scrollToScale(scaleName) {
+      const block = document.querySelector('[data-qscale="' + scaleName + '"]');
+      if (block && typeof block.scrollIntoView === "function") {
+        block.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    }
+
     document.getElementById("surveyForm").addEventListener("submit", async (e) => {
       e.preventDefault();
-      const data = Ginseng.collectForm(document.getElementById("surveyForm"));
+
+      const form = document.getElementById("surveyForm");
+
+      // 1) Let browser validate radio required fields first
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      // 2) Custom validation for scales (so it never "silently blocks")
+      // Q6–Q9 are mandatory; Q14 is optional (can be left empty)
+      const missing = firstMissingScale(form, ["q6_tooCheap", "q7_goodValue", "q8_expOk", "q9_tooExp"]);
+      if (missing) {
+        scrollToScale(missing);
+        alert(Ginseng.t({
+          de: "Bitte beantworte auch die Preis-Fragen (Q6–Q9) mit 1–5.",
+          vi: "Vui lòng trả lời các câu về giá (Q6–Q9) bằng thang 1–5.",
+          en: "Please answer the price questions (Q6–Q9) using 1–5."
+        }));
+        return;
+      }
+
+      const data = Ginseng.collectForm(form);
+
+      // Include meta fields (role/city) so they are not lost
+      const role = document.getElementById("role")?.value || "";
+      const city = document.getElementById("city")?.value || "";
+
       const payload = {
         id: Ginseng.uuid(),
         ts: new Date().toISOString(),
         lang: localStorage.getItem("ginseng_lang") || "de",
+        meta: { role, city },
         answers: data
       };
+
       try {
         await Ginseng.saveResponse(payload);
         window.location.href = "thanks.html";
