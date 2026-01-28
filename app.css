@@ -6,147 +6,54 @@
   --line: #26282d;
   --btn: #ffffff;
   --btnText: #0b0b0c;
-  --accent: #d4a017; /* Ginseng-Gold für Premium-Optik */
+  --accent: #d4a017; /* Gold für 18mg Premium Ginseng */
 }
 
 * { box-sizing: border-box; }
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  font-family: -apple-system, system-ui, sans-serif;
   background: var(--bg);
   color: var(--text);
-  -webkit-tap-highlight-color: transparent;
+  line-height: 1.5;
 }
 
 .wrap {
-  max-width: 500px; /* Besser für die einhändige Handy-Nutzung */
+  max-width: 500px;
   margin: 0 auto;
   padding: 18px;
 }
 
-/* Header-Bereich */
-.row {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
+.row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.lang button { border: 1px solid var(--line); background: transparent; color: white; padding: 8px 12px; border-radius: 10px; cursor: pointer; }
+.lang button.active { background: white; color: black; }
 
-.lang { display: flex; gap: 8px; }
+/* Karten-Design für Fragen */
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 20px; margin-bottom: 20px; }
+.q { background: #1c1c1e; border-radius: 16px; padding: 16px; margin-bottom: 16px; border: 1px solid var(--line); }
+.q-title { font-weight: 700; margin-bottom: 12px; font-size: 17px; display: block; }
 
-.lang button {
-  border: 1px solid var(--line);
-  background: transparent;
-  color: var(--text);
-  padding: 8px 12px;
-  border-radius: 12px;
-  font-size: 16px; /* Größer für leichtere Bedienung */
-  cursor: pointer;
-}
+h1 { font-size: 24px; margin-bottom: 10px; }
+h2 { color: var(--accent); font-size: 14px; text-transform: uppercase; margin: 30px 0 10px; letter-spacing: 1px; }
 
-.lang button.active {
-  background: var(--text);
-  color: var(--bg);
-}
-
-/* Karten-Struktur für die Fragen */
-.card {
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 20px;
-  padding: 20px;
-  margin: 16px 0;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-}
-
-h1 { font-size: 24px; margin: 0 0 12px; font-weight: 800; }
-
-h2 {
-  font-size: 14px;
-  margin: 30px 0 10px;
-  color: var(--accent); /* Sektionen in Gold abgesetzt */
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: 700;
-}
-
-p { margin: 8px 0; color: var(--muted); line-height: 1.4; }
-
-/* Antwort-Optionen als große Tipp-Flächen */
+/* Große Tipp-Flächen für das Handy */
 .choice {
   display: flex;
   align-items: center;
-  background: #1c1c1e;
-  padding: 14px 16px;
-  border-radius: 14px;
-  margin-bottom: 10px;
-  cursor: pointer;
-  border: 1px solid var(--line);
-  transition: background 0.2s;
-}
-
-.choice:hover { background: #26282d; }
-
-.choice input[type="radio"] {
-  margin-right: 14px;
-  width: 20px;
-  height: 20px;
-  accent-color: var(--accent);
-}
-
-/* Preis-Skala (Punkte) */
-.scale {
-  display: flex;
-  gap: 6px;
-  margin-top: 12px;
-}
-
-.dot {
-  flex: 1;
-  height: 44px;
-  border-radius: 10px;
-  border: 1px solid var(--line);
-  background: #1c1c1e;
-  color: var(--text);
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.dot.active {
-  background: var(--accent);
-  color: #000;
-  border-color: var(--accent);
-}
-
-/* Buttons */
-.btn {
-  display: inline-block;
-  width: 100%;
-  text-align: center;
-  background: var(--btn);
-  color: var(--btnText);
-  padding: 16px;
-  border-radius: 16px;
-  text-decoration: none;
-  font-weight: 800;
-  font-size: 18px;
-  border: 0;
-  margin-top: 20px;
+  background: #26282d;
+  padding: 12px 16px;
+  border-radius: 12px;
+  margin-bottom: 8px;
   cursor: pointer;
 }
+.choice input { margin-right: 12px; width: 18px; height: 18px; accent-color: var(--accent); }
 
-.small { font-size: 12px; color: var(--muted); }
+/* Skala Q6-Q9 & Q14 */
+.scale { display: flex; gap: 8px; margin-top: 10px; }
+.dot { flex: 1; height: 44px; border-radius: 10px; border: 1px solid var(--line); background: #26282d; color: white; cursor: pointer; font-weight: bold; }
+.dot.active { background: var(--accent); color: black; border-color: var(--accent); }
 
-.note {
-  background: rgba(212, 160, 23, 0.05); /* Dezentes Gold-Licht */
-  border: 1px dashed var(--accent);
-  padding: 12px;
-  border-radius: 14px;
-  color: var(--muted);
-  font-size: 13px;
-}
+.btn { display: block; width: 100%; background: var(--btn); color: var(--btnText); padding: 16px; border-radius: 16px; text-align: center; text-decoration: none; font-weight: 700; border: none; font-size: 18px; cursor: pointer; }
+.note { background: rgba(212,160,23,0.1); border: 1px dashed var(--accent); padding: 12px; border-radius: 14px; color: var(--muted); font-size: 14px; }
+.small { font-size: 12px; color: var(--muted); margin-top: 4px; }
