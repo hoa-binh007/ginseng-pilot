@@ -38,9 +38,23 @@
 
   <script src="app.js"></script>
   <script>
-    Ginseng.initLangButtons();
-    Ginseng.renderI18n();
-    document.getElementById("startBtn").href = "survey.html?" + Ginseng.keepParams();
+    // Ensure the page works even if app.js already runs DOMContentLoaded.
+    // Also fixes missing keepParams().
+    window.addEventListener("DOMContentLoaded", () => {
+      // If you use the robust app.js I gave you, these exist:
+      if (window.Ginseng?.initLangButtons) window.Ginseng.initLangButtons();
+      if (window.Ginseng?.renderI18n) window.Ginseng.renderI18n();
+
+      // keepParams() may not exist -> fallback to empty string
+      const qp = (window.Ginseng?.keepParams && typeof window.Ginseng.keepParams === "function")
+        ? window.Ginseng.keepParams()
+        : "";
+
+      const startBtn = document.getElementById("startBtn");
+      if (startBtn) {
+        startBtn.href = qp ? ("survey.html?" + qp) : "survey.html";
+      }
+    });
   </script>
 </body>
 </html>
