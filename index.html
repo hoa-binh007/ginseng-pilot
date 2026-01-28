@@ -9,52 +9,41 @@
 <body>
   <div class="wrap">
     <div class="row">
-      <div class="small" data-vi="Pilot Survey" data-en="Pilot Survey"></div>
+      <div class="small" data-de="Pilot-Umfrage" data-vi="Khảo sát Pilot" data-en="Pilot Survey"></div>
       <div class="lang">
+        <button id="btnDe" type="button">🇩🇪</button>
         <button id="btnVi" type="button">🇻🇳</button>
         <button id="btnEn" type="button">🇬🇧</button>
       </div>
     </div>
 
     <div class="card">
-      <h1 data-vi="Trà Hồng Sâm – Góp ý nhanh" data-en="Korean Red Ginseng – Quick Feedback"></h1>
+      <h1 data-de="Koreanischer Roter Ginseng – Schnelles Feedback"
+          data-vi="Trà Hồng Sâm – Góp ý nhanh"
+          data-en="Korean Red Ginseng – Quick Feedback"></h1>
 
-      <p data-vi="Cảm ơn bạn đã dùng thử. Khảo sát ẩn danh, trả lời nhanh ~1 phút."
+      <p data-de="Danke fürs Probieren. Anonyme Umfrage, ca. 1 Minute."
+         data-vi="Cảm ơn bạn đã dùng thử. Khảo sát ẩn danh, trả lời nhanh ~1 phút."
          data-en="Thanks for trying it. Anonymous survey, ~1 minute."></p>
 
       <div class="note">
-        <div data-vi="Gợi ý: có thể đắng nhẹ, sau đó ngọt nhẹ và nhiều nước bọt. Mỗi người cảm nhận khác nhau."
+        <div data-de="Hinweis: Es kann leicht bitter sein, danach leicht süß und ggf. mehr Speichel. Jeder nimmt es anders wahr."
+             data-vi="Gợi ý: có thể đắng nhẹ, sau đó ngọt nhẹ và nhiều nước bọt. Mỗi người cảm nhận khác nhau."
              data-en="Note: it may feel slightly bitter, then a mild sweet aftertaste and more saliva. Perception differs."></div>
       </div>
 
       <a class="btn" id="startBtn" href="survey.html"
-         data-vi="Bắt đầu khảo sát" data-en="Start survey"></a>
+         data-de="Umfrage starten"
+         data-vi="Bắt đầu khảo sát"
+         data-en="Start survey"></a>
 
       <p class="small"
+         data-de="Keine richtigen/falschen Antworten. Einfach schnell tippen."
          data-vi="Không có đúng/sai. Chỉ cần chọn nhanh."
          data-en="No right/wrong answers. Just tap quickly."></p>
     </div>
   </div>
 
   <script src="app.js"></script>
-  <script>
-    // Ensure the page works even if app.js already runs DOMContentLoaded.
-    // Also fixes missing keepParams().
-    window.addEventListener("DOMContentLoaded", () => {
-      // If you use the robust app.js I gave you, these exist:
-      if (window.Ginseng?.initLangButtons) window.Ginseng.initLangButtons();
-      if (window.Ginseng?.renderI18n) window.Ginseng.renderI18n();
-
-      // keepParams() may not exist -> fallback to empty string
-      const qp = (window.Ginseng?.keepParams && typeof window.Ginseng.keepParams === "function")
-        ? window.Ginseng.keepParams()
-        : "";
-
-      const startBtn = document.getElementById("startBtn");
-      if (startBtn) {
-        startBtn.href = qp ? ("survey.html?" + qp) : "survey.html";
-      }
-    });
-  </script>
 </body>
 </html>
