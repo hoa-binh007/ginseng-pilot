@@ -26,7 +26,7 @@ function renderI18n() {
   });
 }
 
-// Flexible: works with pages that have only 2 buttons (e.g., VI/EN) or all 3 (DE/VI/EN)
+// Flexible: works on pages with 2 or 3 buttons
 function initLangButtons() {
   const btnMap = { vi: $("btnVi"), en: $("btnEn"), de: $("btnDe") };
   const available = Object.entries(btnMap).filter(([, el]) => !!el);
@@ -42,7 +42,7 @@ function initLangButtons() {
     el.onclick = () => { setLang(k); paint(); };
   });
 
-  // If stored lang doesn't exist on this page, fallback to the first available
+  // If stored lang doesn't exist on this page, fallback to first available
   const current = getLang();
   if (!available.some(([k]) => k === current)) setLang(available[0][0]);
 
@@ -57,8 +57,9 @@ function setScale(scaleName, value) {
   hidden.value = String(value);
 
   document.querySelectorAll(`button.dot[data-scale="${scaleName}"]`).forEach(btn => {
-    btn.classList.toggle("active", btn.dataset.value === String(value));
-    btn.setAttribute("aria-pressed", btn.dataset.value === String(value) ? "true" : "false");
+    const active = btn.dataset.value === String(value);
+    btn.classList.toggle("active", active);
+    btn.setAttribute("aria-pressed", active ? "true" : "false");
   });
 }
 
@@ -82,7 +83,7 @@ function collectForm(formEl) {
   return data;
 }
 
-// ===== 3) VALIDATION (robust for hidden scales) =====
+// ===== 3) VALIDATION =====
 function firstMissingHiddenScale(formEl, names) {
   for (const n of names) {
     const el = formEl.querySelector(`input[type="hidden"][name="${n}"]`);
@@ -98,7 +99,35 @@ function scrollToScale(scaleName) {
   }
 }
 
-// ===== 4) STORAGE =====
+// ===== 4) HELPERS =====
+function keepParams() {
+  const params = new URLSearchParams(window.location.search);
+  return params.toString();
+}
+
+async function copyToClipboard(text) {
+  const str = String(text || "");
+  try {
+    await navigator.clipboard.writeText(str);
+    return true;
+  } catch (e) {
+    try {
+      const ta = document.createElement("textarea");
+      ta.value = str;
+      ta.style.position = "fixed";
+      ta.style.left = "-9999px";
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      ta.remove();
+      return true;
+    } catch (e2) {
+      return false;
+    }
+  }
+}
+
+// ===== 5) STORAGE =====
 function uuid() {
   if (crypto && typeof crypto.randomUUID === "function") return crypto.randomUUID();
   return "id-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 10);
@@ -115,30 +144,27 @@ async function saveResponse(payload) {
   return res.json();
 }
 
-// ===== 5) MOTOR =====
-window.addEventListener("DOMContentLoaded", () => {
-  initLangButtons();
-
-  // enable scale buttons
+// ===== 6) PAGE WIRING (one motor for all pages) =====
+function wireScaleButtons() {
   document.querySelectorAll("button.dot[data-scale]").forEach(btn => {
     btn.addEventListener("click", () => {
       setScale(btn.dataset.scale, btn.dataset.value);
     });
   });
+}
 
+function wireSurveyForm() {
   const form = $("surveyForm");
   if (!form) return;
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    // Browser validation for required radios etc.
     if (!form.checkValidity()) {
       form.reportValidity();
       return;
     }
 
-    // Custom validation for mandatory scales Q6–Q9
     const missing = firstMissingHiddenScale(form, ["q6_tooCheap", "q7_goodValue", "q8_expOk", "q9_tooExp"]);
     if (missing) {
       scrollToScale(missing);
@@ -174,14 +200,45 @@ window.addEventListener("DOMContentLoaded", () => {
       }));
     }
   });
+}
+
+function wireStartAndBackLinks() {
+  const qp = keepParams();
+  const startBtn = $("startBtn");
+  if (startBtn) startBtn.href = qp ? ("survey.html?" + qp) : "survey.html";
+
+  const backBtn = $("backBtn");
+  if (backBtn) backBtn.href = qp ? ("index.html?" + qp) : "index.html";
+}
+
+function wireThanksCopy() {
+  const copyBtn = $("copyBtn");
+  const voucherEl = $("voucher");
+  if (!copyBtn || !voucherEl) return;
+
+  copyBtn.addEventListener("click", async () => {
+    await copyToClipboard(voucherEl.textContent || "");
+    alert(t({ de: "Kopiert!", vi: "Đã sao chép!", en: "Copied!" }));
+  });
+}
+
+// ===== 7) MOTOR =====
+window.addEventListener("DOMContentLoaded", () => {
+  initLangButtons();      // includes renderI18n()
+  wireStartAndBackLinks();
+  wireScaleButtons();
+  wireSurveyForm();
+  wireThanksCopy();
 });
 
-// Export everything you may call from HTML
+// Export for optional HTML calls
 window.Ginseng = {
   // language
   getLang, setLang, initLangButtons, renderI18n, t,
   // form
   setScale, collectForm,
   // storage
-  saveResponse, uuid
+  saveResponse, uuid,
+  // helpers
+  keepParams, copyToClipboard
 };
