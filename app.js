@@ -42,7 +42,7 @@ function initLangButtons() {
     el.onclick = () => { setLang(k); paint(); };
   });
 
-  // If stored lang doesn't exist on this page, fallback to first available
+  // If stored lang doesn't exist on this page, fallback to the first available
   const current = getLang();
   if (!available.some(([k]) => k === current)) setLang(available[0][0]);
 
@@ -127,6 +127,15 @@ async function copyToClipboard(text) {
   }
 }
 
+// IMPORTANT: language must be applied from URL before rendering
+function applyLangFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const lang = params.get("lang");
+  if (lang === "de" || lang === "vi" || lang === "en") {
+    setLang(lang);
+  }
+}
+
 // ===== 5) STORAGE =====
 function uuid() {
   if (crypto && typeof crypto.randomUUID === "function") return crypto.randomUUID();
@@ -190,7 +199,10 @@ function wireSurveyForm() {
 
     try {
       await saveResponse(payload);
-      window.location.href = "thanks.html";
+
+      // Redirect with explicit lang so thanks page always matches
+      const lang = getLang();
+      window.location.href = `thanks.html?lang=${encodeURIComponent(lang)}`;
     } catch (err) {
       console.error(err);
       alert(t({
@@ -204,11 +216,20 @@ function wireSurveyForm() {
 
 function wireStartAndBackLinks() {
   const qp = keepParams();
+  const lang = getLang();
+
+  const withLang = (base) => {
+    const parts = [];
+    if (qp) parts.push(qp);
+    parts.push("lang=" + encodeURIComponent(lang));
+    return base + "?" + parts.join("&");
+  };
+
   const startBtn = $("startBtn");
-  if (startBtn) startBtn.href = qp ? ("survey.html?" + qp) : "survey.html";
+  if (startBtn) startBtn.href = withLang("survey.html");
 
   const backBtn = $("backBtn");
-  if (backBtn) backBtn.href = qp ? ("index.html?" + qp) : "index.html";
+  if (backBtn) backBtn.href = withLang("index.html");
 }
 
 function wireThanksCopy() {
@@ -224,6 +245,7 @@ function wireThanksCopy() {
 
 // ===== 7) MOTOR =====
 window.addEventListener("DOMContentLoaded", () => {
+  applyLangFromUrl();     // MUST run first
   initLangButtons();      // includes renderI18n()
   wireStartAndBackLinks();
   wireScaleButtons();
@@ -240,5 +262,5 @@ window.Ginseng = {
   // storage
   saveResponse, uuid,
   // helpers
-  keepParams, copyToClipboard
+  keepParams, copyToClipboard, applyLangFromUrl
 };
