@@ -9,106 +9,101 @@
 <body>
   <div class="wrap">
     <div class="row">
-      <div class="small" data-vi="Khảo sát" data-en="Survey"></div>
+      <div class="small" data-de="Umfrage" data-vi="Khảo sát" data-en="Survey"></div>
       <div class="lang">
+        <button id="btnDe" type="button">🇩🇪</button>
         <button id="btnVi" type="button">🇻🇳</button>
         <button id="btnEn" type="button">🇬🇧</button>
       </div>
     </div>
 
-    <!-- Pilot Meta (optional, low-friction) -->
-<div class="pilot-meta" style="margin:12px 0; padding:12px; border:1px solid #333; border-radius:10px;">
-  <div style="display:flex; gap:10px; flex-wrap:wrap;">
-    <label style="flex:1; min-width:160px;">
-      <div style="font-weight:600; margin-bottom:6px;">Role (optional)</div>
-      <select id="role" style="width:100%; padding:8px;">
-        <option value="">(skip)</option>
-        <option value="consumer">Consumer</option>
-        <option value="expert">Expert</option>
-      </select>
-    </label>
+    <div class="pilot-meta" style="margin:12px 0; padding:12px; border:1px solid #333; border-radius:10px;">
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <label style="flex:1; min-width:160px;">
+          <div style="font-weight:600; margin-bottom:6px;" data-de="Rolle (optional)" data-vi="Vai trò (tùy chọn)" data-en="Role (optional)"></div>
+          <select id="role" style="width:100%; padding:8px;">
+            <option value="" data-de="(überspringen)" data-vi="(bỏ qua)" data-en="(skip)"></option>
+            <option value="consumer" data-de="Konsument" data-vi="Người dùng" data-en="Consumer"></option>
+            <option value="expert" data-de="Experte" data-vi="Chuyên gia" data-en="Expert"></option>
+          </select>
+        </label>
 
-    <label style="flex:1; min-width:160px;">
-      <div style="font-weight:600; margin-bottom:6px;">City (optional)</div>
-      <select id="city" style="width:100%; padding:8px;">
-        <option value="">(skip)</option>
-        <option value="Saigon">Saigon</option>
-        <option value="DaLat">Da Lat</option>
-        <option value="Hue">Huế</option>
-        <option value="QuangBinh">Quảng Bình</option>
-        <option value="Other">Other</option>
-      </select>
-    </label>
-  </div>
-
-  <div style="margin-top:8px; font-size:0.9em; opacity:0.8;">
-    Optional – helps us compare cities/experts without asking for personal data.
-  </div>
-</div>
-
+        <label style="flex:1; min-width:160px;">
+          <div style="font-weight:600; margin-bottom:6px;" data-de="Stadt (optional)" data-vi="Thành phố (tùy chọn)" data-en="City (optional)"></div>
+          <select id="city" style="width:100%; padding:8px;">
+            <option value="" data-de="(überspringen)" data-vi="(bỏ qua)" data-en="(skip)"></option>
+            <option value="Germany" data-de="Deutschland" data-vi="Đức" data-en="Germany"></option>
+            <option value="Saigon">Saigon</option>
+            <option value="DaLat">Da Lat</option>
+            <option value="Hue">Huế</option>
+            <option value="QuangBinh">Quảng Bình</option>
+            <option value="Other" data-de="Andere" data-vi="Khác" data-en="Other"></option>
+          </select>
+        </label>
+      </div>
+      <div style="margin-top:8px; font-size:0.9em; opacity:0.8;" data-de="Hilft uns beim Vergleich der Standorte." data-vi="Giúp chúng tôi so sánh giữa các thành phố." data-en="Helps us compare cities/experts."></div>
+    </div>
 
     <div class="card">
-      <h1 data-vi="Khảo sát nhanh (14 câu)" data-en="Quick survey (14 questions)"></h1>
-      <p data-vi="Chọn nhanh. Ẩn danh." data-en="Tap quickly. Anonymous."></p>
+      <h1 data-de="Schnellumfrage (14 Fragen)" data-vi="Khảo sát nhanh (14 câu)" data-en="Quick survey (14 questions)"></h1>
+      <p data-de="Anonym. Schnell tippen." data-vi="Chọn nhanh. Ẩn danh." data-en="Tap quickly. Anonymous."></p>
 
       <form id="surveyForm">
 
-        <h2 data-vi="PHẦN A – CẢM NHẬN" data-en="PART A – PERCEPTION"></h2>
+        <h2 data-de="TEIL A – WAHRNEHMUNG" data-vi="PHẦN A – CẢM NHẬN" data-en="PART A – PERCEPTION"></h2>
 
         <div class="q">
-          <div class="q-title" data-vi="Q1. Vị đắng" data-en="Q1. Bitter taste"></div>
+          <div class="q-title" data-de="Q1. Bitterer Geschmack" data-vi="Q1. Vị đắng" data-en="Q1. Bitter taste"></div>
           <div class="choices">
-            <label class="choice"><input type="radio" name="q1_bitter" value="strong" required><span data-vi="Đắng rõ" data-en="Strong"></span></label>
-            <label class="choice"><input type="radio" name="q1_bitter" value="mild"><span data-vi="Đắng nhẹ" data-en="Mild"></span></label>
-            <label class="choice"><input type="radio" name="q1_bitter" value="hardly"><span data-vi="Hầu như không đắng" data-en="Hardly"></span></label>
-            <label class="choice"><input type="radio" name="q1_bitter" value="none"><span data-vi="Không đắng" data-en="Not bitter"></span></label>
+            <label class="choice"><input type="radio" name="q1_bitter" value="strong" required><span data-de="Stark" data-vi="Đắng rõ" data-en="Strong"></span></label>
+            <label class="choice"><input type="radio" name="q1_bitter" value="mild"><span data-de="Mild" data-vi="Đắng nhẹ" data-en="Mild"></span></label>
+            <label class="choice"><input type="radio" name="q1_bitter" value="hardly"><span data-de="Kaum" data-vi="Hầu như không đắng" data-en="Hardly"></span></label>
+            <label class="choice"><input type="radio" name="q1_bitter" value="none"><span data-de="Nicht bitter" data-vi="Không đắng" data-en="Not bitter"></span></label>
           </div>
         </div>
 
         <div class="q">
-          <div class="q-title" data-vi="Q2. Hậu vị ngọt nhẹ?" data-en="Q2. Slight sweet aftertaste?"></div>
+          <div class="q-title" data-de="Q2. Leichter süßer Nachgeschmack?" data-vi="Q2. Hậu vị ngọt nhẹ?" data-en="Q2. Slight sweet aftertaste?"></div>
           <div class="choices">
-            <label class="choice"><input type="radio" name="q2_sweet" value="yes" required><span data-vi="Có" data-en="Yes"></span></label>
-            <label class="choice"><input type="radio" name="q2_sweet" value="little"><span data-vi="Có một chút" data-en="A little"></span></label>
-            <label class="choice"><input type="radio" name="q2_sweet" value="unsure"><span data-vi="Không chắc" data-en="Not sure"></span></label>
-            <label class="choice"><input type="radio" name="q2_sweet" value="no"><span data-vi="Không" data-en="No"></span></label>
+            <label class="choice"><input type="radio" name="q2_sweet" value="yes" required><span data-de="Ja" data-vi="Có" data-en="Yes"></span></label>
+            <label class="choice"><input type="radio" name="q2_sweet" value="little"><span data-de="Ein bisschen" data-vi="Có một chút" data-en="A little"></span></label>
+            <label class="choice"><input type="radio" name="q2_sweet" value="unsure"><span data-de="Nicht sicher" data-vi="Không chắc" data-en="Not sure"></span></label>
+            <label class="choice"><input type="radio" name="q2_sweet" value="no"><span data-de="Nein" data-vi="Không" data-en="No"></span></label>
           </div>
         </div>
 
         <div class="q">
-          <div class="q-title" data-vi="Q3. Nhiều nước bọt hơn?" data-en="Q3. More saliva?"></div>
+          <div class="q-title" data-de="Q3. Mehr Speichelfluss?" data-vi="Q3. Nhiều nước bọt hơn?" data-en="Q3. More saliva?"></div>
           <div class="choices">
-            <label class="choice"><input type="radio" name="q3_saliva" value="yes_clear" required><span data-vi="Có, rõ" data-en="Yes, clearly"></span></label>
-            <label class="choice"><input type="radio" name="q3_saliva" value="yes_light"><span data-vi="Có, nhẹ" data-en="Yes, a little"></span></label>
-            <label class="choice"><input type="radio" name="q3_saliva" value="unsure"><span data-vi="Không chắc" data-en="Not sure"></span></label>
-            <label class="choice"><input type="radio" name="q3_saliva" value="no"><span data-vi="Không" data-en="No"></span></label>
+            <label class="choice"><input type="radio" name="q3_saliva" value="yes_clear" required><span data-de="Ja, deutlich" data-vi="Có, rõ" data-en="Yes, clearly"></span></label>
+            <label class="choice"><input type="radio" name="q3_saliva" value="yes_light"><span data-de="Ja, leicht" data-vi="Có, nhẹ" data-en="Yes, a little"></span></label>
+            <label class="choice"><input type="radio" name="q3_saliva" value="unsure"><span data-de="Nicht sicher" data-vi="Không chắc" data-en="Not sure"></span></label>
+            <label class="choice"><input type="radio" name="q3_saliva" value="no"><span data-de="Nein" data-vi="Không" data-en="No"></span></label>
           </div>
         </div>
 
         <div class="q">
-          <div class="q-title" data-vi="Q4. Cảm nhận chung" data-en="Q4. Overall perception"></div>
+          <div class="q-title" data-de="Q4. Gesamteindruck" data-vi="Q4. Cảm nhận chung" data-en="Q4. Overall perception"></div>
           <div class="choices">
-            <label class="choice"><input type="radio" name="q4_type" value="health_machine" required><span data-vi="Đồ uống sức khỏe, tiện lợi (pha bằng máy)" data-en="Convenient health drink (machine-based)"></span></label>
-            <label class="choice"><input type="radio" name="q4_type" value="medicinal"><span data-vi="Dược liệu / thuốc Đông y" data-en="Herbal / medicinal product"></span></label>
-            <label class="choice"><input type="radio" name="q4_type" value="coffee_machine"><span data-vi="Giống cà phê (pha bằng máy)" data-en="Similar to coffee (machine-based)"></span></label>
-            <label class="choice"><input type="radio" name="q4_type" value="hard"><span data-vi="Khó nói" data-en="Hard to say"></span></label>
+            <label class="choice"><input type="radio" name="q4_type" value="health_machine" required><span data-de="Gesundheitsgetränk (Maschine)" data-vi="Đồ uống sức khỏe (máy)" data-en="Health drink (machine)"></span></label>
+            <label class="choice"><input type="radio" name="q4_type" value="medicinal"><span data-de="Naturmedizin / Kräuter" data-vi="Dược liệu / thuốc Đông y" data-en="Herbal / medicinal"></span></label>
+            <label class="choice"><input type="radio" name="q4_type" value="coffee_machine"><span data-de="Ähnlich wie Kaffee (Maschine)" data-vi="Giống cà phê (máy)" data-en="Similar to coffee (machine)"></span></label>
           </div>
         </div>
 
         <div class="q">
-          <div class="q-title" data-vi="Q5. Bạn thích uống…" data-en="Q5. Preferred serving"></div>
+          <div class="q-title" data-de="Q5. Bevorzugte Servierform" data-vi="Q5. Bạn thích uống…" data-en="Q5. Preferred serving"></div>
           <div class="choices">
-            <label class="choice"><input type="radio" name="q5_temp" value="hot" required><span data-vi="Nóng" data-en="Hot"></span></label>
-            <label class="choice"><input type="radio" name="q5_temp" value="cold"><span data-vi="Lạnh / có đá" data-en="Cold / with ice"></span></label>
-            <label class="choice"><input type="radio" name="q5_temp" value="either"><span data-vi="Cách nào cũng được" data-en="Either is fine"></span></label>
+            <label class="choice"><input type="radio" name="q5_temp" value="hot" required><span data-de="Heiß" data-vi="Nóng" data-en="Hot"></span></label>
+            <label class="choice"><input type="radio" name="q5_temp" value="cold"><span data-de="Kalt / Eis" data-vi="Lạnh / Đá" data-en="Cold / with ice"></span></label>
+            <label class="choice"><input type="radio" name="q5_temp" value="either"><span data-de="Egal" data-vi="Cách nào cũng được" data-en="Either is fine"></span></label>
           </div>
         </div>
 
-        <h2 data-vi="PHẦN B – GIÁ & GIÁ TRỊ" data-en="PART B – PRICE & VALUE"></h2>
-        <p class="small" data-vi="Chọn mức (không hiển thị số)." data-en="Pick a level (no numbers shown)."></p>
+        <h2 data-de="TEIL B – PREIS & WERT" data-vi="PHẦN B – GIÁ & GIÁ TRỊ" data-en="PART B – PRICE & VALUE"></h2>
 
         <div class="q">
-          <div class="q-title" data-vi="Q6. Quá rẻ để tin tưởng (Hàn Quốc + chứng nhận)" data-en="Q6. Too cheap to trust (Korea + certification)"></div>
+          <div class="q-title" data-de="Q6. Zu billig (Zweifel an Qualität)" data-vi="Q6. Quá rẻ để tin tưởng" data-en="Q6. Too cheap to trust"></div>
           <input type="hidden" name="q6_tooCheap" value="" required>
           <div class="scale">
             <button class="dot" type="button" data-scale="q6_tooCheap" data-value="1">1</button>
@@ -120,7 +115,7 @@
         </div>
 
         <div class="q">
-          <div class="q-title" data-vi="Q7. Giá đáng tiền" data-en="Q7. Good value"></div>
+          <div class="q-title" data-de="Q7. Gutes Preis-Leistungs-Verhältnis" data-vi="Q7. Giá đáng tiền" data-en="Q7. Good value"></div>
           <input type="hidden" name="q7_goodValue" value="" required>
           <div class="scale">
             <button class="dot" type="button" data-scale="q7_goodValue" data-value="1">1</button>
@@ -132,7 +127,7 @@
         </div>
 
         <div class="q">
-          <div class="q-title" data-vi="Q8. Hơi đắt nhưng vẫn mua" data-en="Q8. Expensive but acceptable"></div>
+          <div class="q-title" data-de="Q8. Teuer, aber akzeptabel" data-vi="Q8. Hơi đắt nhưng vẫn mua" data-en="Q8. Expensive but acceptable"></div>
           <input type="hidden" name="q8_expOk" value="" required>
           <div class="scale">
             <button class="dot" type="button" data-scale="q8_expOk" data-value="1">1</button>
@@ -144,7 +139,7 @@
         </div>
 
         <div class="q">
-          <div class="q-title" data-vi="Q9. Quá đắt, không mua" data-en="Q9. Too expensive to buy"></div>
+          <div class="q-title" data-de="Q9. Zu teuer zum Kaufen" data-vi="Q9. Quá đắt, không mua" data-en="Q9. Too expensive to buy"></div>
           <input type="hidden" name="q9_tooExp" value="" required>
           <div class="scale">
             <button class="dot" type="button" data-scale="q9_tooExp" data-value="1">1</button>
@@ -155,55 +150,51 @@
           </div>
         </div>
 
-        <h2 data-vi="PHẦN C – MUA HÀNG" data-en="PART C – BUYING"></h2>
+        <h2 data-de="TEIL C – KAUFVERHALTEN" data-vi="PHẦN C – MUA HÀNG" data-en="PART C – BUYING"></h2>
 
         <div class="q">
-          <div class="q-title" data-vi="Q10. Nếu giá phù hợp, bạn sẽ uống…" data-en="Q10. If price fits, you would drink…"></div>
+          <div class="q-title" data-de="Q10. Konsumhäufigkeit" data-vi="Q10. Tần suất uống" data-en="Q10. Consumption frequency"></div>
           <div class="choices">
-            <label class="choice"><input type="radio" name="q10_freq" value="daily" required><span data-vi="Mỗi ngày" data-en="Daily"></span></label>
-            <label class="choice"><input type="radio" name="q10_freq" value="2_3wk"><span data-vi="2–3 lần / tuần" data-en="2–3 times/week"></span></label>
-            <label class="choice"><input type="radio" name="q10_freq" value="1wk"><span data-vi="1 lần / tuần" data-en="Once a week"></span></label>
-            <label class="choice"><input type="radio" name="q10_freq" value="occasion"><span data-vi="Thỉnh thoảng" data-en="Occasionally"></span></label>
+            <label class="choice"><input type="radio" name="q10_freq" value="daily" required><span data-de="Täglich" data-vi="Mỗi ngày" data-en="Daily"></span></label>
+            <label class="choice"><input type="radio" name="q10_freq" value="2_3wk"><span data-de="2-3 mal pro Woche" data-vi="2–3 lần / tuần" data-en="2-3 times/week"></span></label>
+            <label class="choice"><input type="radio" name="q10_freq" value="1wk"><span data-de="Wöchentlich" data-vi="1 lần / tuần" data-en="Once a week"></span></label>
+            <label class="choice"><input type="radio" name="q10_freq" value="occasion"><span data-de="Gelegentlich" data-vi="Thỉnh thoảng" data-en="Occasionally"></span></label>
           </div>
         </div>
 
         <div class="q">
-          <div class="q-title" data-vi="Q11. Bạn thích mua…" data-en="Q11. You prefer to buy…"></div>
+          <div class="q-title" data-de="Q11. Bevorzugte Packung" data-vi="Q11. Bạn thích mua…" data-en="Q11. Preferred pack"></div>
           <div class="choices">
-            <label class="choice"><input type="radio" name="q11_pack" value="single" required><span data-vi="Từng viên" data-en="Single capsules"></span></label>
-            <label class="choice"><input type="radio" name="q11_pack" value="box10"><span data-vi="Hộp 10 viên" data-en="Box of 10"></span></label>
-            <label class="choice"><input type="radio" name="q11_pack" value="box30"><span data-vi="Hộp 30 viên" data-en="Box of 30"></span></label>
-            <label class="choice"><input type="radio" name="q11_pack" value="gift"><span data-vi="🎁 Hộp làm quà biếu" data-en="🎁 Gift box"></span></label>
+            <label class="choice"><input type="radio" name="q11_pack" value="single" required><span data-de="Einzelne Kapsel" data-vi="Từng viên" data-en="Single capsule"></span></label>
+            <label class="choice"><input type="radio" name="q11_pack" value="box10"><span data-de="10er Box" data-vi="Hộp 10 viên" data-en="Box of 10"></span></label>
+            <label class="choice"><input type="radio" name="q11_pack" value="box30"><span data-de="30er Box" data-vi="Hộp 30 viên" data-en="Box of 30"></span></label>
+            <label class="choice"><input type="radio" name="q11_pack" value="gift"><span data-de="Geschenkbox 🎁" data-vi="Hộp quà 🎁" data-en="Gift box 🎁"></span></label>
           </div>
         </div>
 
         <div class="q">
-          <div class="q-title" data-vi="Q12. Bạn tin tưởng mua nhất ở đâu?" data-en="Q12. Where would you trust buying most?"></div>
+          <div class="q-title" data-de="Q12. Vertrauenswürdigster Kaufort" data-vi="Q12. Nơi tin tưởng nhất" data-en="Q12. Most trusted place"></div>
           <div class="choices">
-            <label class="choice"><input type="radio" name="q12_channel" value="pharmacy" required><span data-vi="Nhà thuốc" data-en="Pharmacy"></span></label>
-            <label class="choice"><input type="radio" name="q12_channel" value="supermarket"><span data-vi="Siêu thị" data-en="Supermarket"></span></label>
-            <label class="choice"><input type="radio" name="q12_channel" value="social"><span data-vi="Facebook / Zalo" data-en="Facebook / Zalo"></span></label>
-            <label class="choice"><input type="radio" name="q12_channel" value="website"><span data-vi="Website chính thức" data-en="Official website"></span></label>
-            <label class="choice"><input type="radio" name="q12_channel" value="healthstore"><span data-vi="Cửa hàng sức khỏe" data-en="Health store"></span></label>
+            <label class="choice"><input type="radio" name="q12_channel" value="pharmacy" required><span data-de="Apotheke" data-vi="Nhà thuốc" data-en="Pharmacy"></span></label>
+            <label class="choice"><input type="radio" name="q12_channel" value="supermarket"><span data-de="Supermarkt" data-vi="Siêu thị" data-en="Supermarket"></span></label>
+            <label class="choice"><input type="radio" name="q12_channel" value="online"><span data-de="Offizielle Webseite" data-vi="Website chính thức" data-en="Official website"></span></label>
           </div>
         </div>
 
-        <h2 data-vi="PHẦN D – TÙY CHỌN" data-en="PART D – OPTIONAL"></h2>
+        <h2 data-de="TEIL D – OPTIONAL" data-vi="PHẦN D – TÙY CHỌN" data-en="PART D – OPTIONAL"></h2>
 
         <div class="q">
-          <div class="q-title" data-vi="Q13. Bạn hiện làm…" data-en="Q13. Your current situation…"></div>
+          <div class="q-title" data-de="Q13. Aktuelle Tätigkeit" data-vi="Q13. Bạn hiện làm…" data-en="Q13. Current occupation"></div>
           <div class="choices">
-            <label class="choice"><input type="radio" name="q13_work" value="office"><span data-vi="Nhân viên văn phòng" data-en="Office / white-collar"></span></label>
-            <label class="choice"><input type="radio" name="q13_work" value="self"><span data-vi="Tự kinh doanh" data-en="Self-employed"></span></label>
-            <label class="choice"><input type="radio" name="q13_work" value="student"><span data-vi="Sinh viên" data-en="Student"></span></label>
-            <label class="choice"><input type="radio" name="q13_work" value="home"><span data-vi="Nội trợ" data-en="Homemaker"></span></label>
-            <label class="choice"><input type="radio" name="q13_work" value="other"><span data-vi="Khác" data-en="Other"></span></label>
+            <label class="choice"><input type="radio" name="q13_work" value="office"><span data-de="Büroangestellter" data-vi="Nhân viên văn phòng" data-en="Office worker"></span></label>
+            <label class="choice"><input type="radio" name="q13_work" value="self"><span data-de="Selbstständig" data-vi="Tự kinh doanh" data-en="Self-employed"></span></label>
+            <label class="choice"><input type="radio" name="q13_work" value="student"><span data-de="Student" data-vi="Sinh viên" data-en="Student"></span></label>
+            <label class="choice"><input type="radio" name="q13_work" value="home"><span data-de="Hausfrau/-mann" data-vi="Nội trợ" data-en="Homemaker"></span></label>
           </div>
-          <p class="small" data-vi="Không bắt buộc" data-en="Optional"></p>
         </div>
 
         <div class="q">
-          <div class="q-title" data-vi="Q14. Chi cho sức khỏe mỗi tháng" data-en="Q14. Monthly health spending"></div>
+          <div class="q-title" data-de="Q14. Ausgaben für Gesundheit / Monat" data-vi="Q14. Chi cho sức khỏe / tháng" data-en="Q14. Health spending / month"></div>
           <input type="hidden" name="q14_spend" value="">
           <div class="scale">
             <button class="dot" type="button" data-scale="q14_spend" data-value="1">1</button>
@@ -211,11 +202,10 @@
             <button class="dot" type="button" data-scale="q14_spend" data-value="3">3</button>
             <button class="dot" type="button" data-scale="q14_spend" data-value="4">4</button>
           </div>
-          <p class="small" data-vi="Không bắt buộc" data-en="Optional"></p>
         </div>
 
         <div class="footer">
-          <button class="btn" type="submit" data-vi="Gửi" data-en="Submit"></button>
+          <button class="btn" type="submit" data-de="Senden" data-vi="Gửi" data-en="Submit"></button>
         </div>
 
       </form>
@@ -224,50 +214,31 @@
 
   <script src="app.js"></script>
   <script>
-  Ginseng.initLangButtons();
-  Ginseng.renderI18n();
+    Ginseng.initLangButtons();
+    Ginseng.renderI18n();
 
-  // Likert dots
-  document.querySelectorAll("button.dot[data-scale]").forEach(btn => {
-    btn.addEventListener("click", () => {
-      Ginseng.setScale(btn.dataset.scale, btn.dataset.value);
+    document.querySelectorAll("button.dot[data-scale]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        Ginseng.setScale(btn.dataset.scale, btn.dataset.value);
+      });
     });
-  });
 
-  document.getElementById("surveyForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const data = Ginseng.collectForm(document.getElementById("surveyForm"));
-
-    // required: Q6–Q9 must be answered (hidden inputs must be set)
-    const missing = ["q6_tooCheap","q7_goodValue","q8_expOk","q9_tooExp"].filter(k => !data[k]);
-    if (missing.length) {
-      alert(Ginseng.t({vi:"Vui lòng chọn đủ phần giá (Q6–Q9).", en:"Please answer the price scale (Q6–Q9)."}));
-      return;
-    }
-
-    const payload = {
-      id: Ginseng.uuid(),
-      ts: new Date().toISOString(),
-      lang: localStorage.getItem("ginseng_lang") || "vi",
-      params: Object.fromEntries(new URLSearchParams(window.location.search).entries()),
-      answers: data
-    };
-
-    try {
-      await Ginseng.saveResponse(payload);
-      console.log("Saved response:", payload);
-
-      window.location.href = "thanks.html?" + Ginseng.keepParams({ rid: payload.id });
-    } catch (err) {
-      console.error(err);
-      alert(Ginseng.t({
-        vi:"Lưu dữ liệu thất bại. Vui lòng thử lại.",
-        en:"Saving failed. Please try again."
-      }));
-    }
-  });
-</script>
-
+    document.getElementById("surveyForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const data = Ginseng.collectForm(document.getElementById("surveyForm"));
+      const payload = {
+        id: Ginseng.uuid(),
+        ts: new Date().toISOString(),
+        lang: localStorage.getItem("ginseng_lang") || "de",
+        answers: data
+      };
+      try {
+        await Ginseng.saveResponse(payload);
+        window.location.href = "thanks.html";
+      } catch (err) {
+        alert(Ginseng.t({de:"Fehler.", vi:"Lỗi.", en:"Error."}));
+      }
+    });
+  </script>
 </body>
 </html>
