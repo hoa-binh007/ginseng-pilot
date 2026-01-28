@@ -7,13 +7,16 @@ function $(id) { return document.getElementById(id); }
 function getLang() {
   return localStorage.getItem(LANG_KEY) || "de";
 }
+
 function setLang(lang) {
   localStorage.setItem(LANG_KEY, lang);
 }
+
 function t(obj) {
   const l = getLang();
   return obj[l] || obj.en || obj.vi || "";
 }
+
 function renderI18n() {
   document.querySelectorAll("[data-vi]").forEach(el => {
     const l = getLang();
@@ -22,18 +25,26 @@ function renderI18n() {
     else el.textContent = el.dataset.de;
   });
 }
+
+// Flexible: works with pages that have only 2 buttons (e.g., VI/EN) or all 3 (DE/VI/EN)
 function initLangButtons() {
-  const btns = { vi: $("btnVi"), en: $("btnEn"), de: $("btnDe") };
-  if (!btns.vi || !btns.en || !btns.de) return;
+  const btnMap = { vi: $("btnVi"), en: $("btnEn"), de: $("btnDe") };
+  const available = Object.entries(btnMap).filter(([, el]) => !!el);
+
+  if (available.length === 0) return;
 
   const paint = () => {
-    Object.keys(btns).forEach(k => btns[k].classList.toggle("active", getLang() === k));
+    available.forEach(([k, el]) => el.classList.toggle("active", getLang() === k));
     renderI18n();
   };
 
-  Object.keys(btns).forEach(k => {
-    btns[k].onclick = () => { setLang(k); paint(); };
+  available.forEach(([k, el]) => {
+    el.onclick = () => { setLang(k); paint(); };
   });
+
+  // If stored lang doesn't exist on this page, fallback to the first available
+  const current = getLang();
+  if (!available.some(([k]) => k === current)) setLang(available[0][0]);
 
   paint();
 }
@@ -81,7 +92,6 @@ function firstMissingHiddenScale(formEl, names) {
 }
 
 function scrollToScale(scaleName) {
-  // optional: if you add data-qscale="q6_tooCheap" on q blocks, it will scroll nicely
   const block = document.querySelector(`[data-qscale="${scaleName}"]`);
   if (block && typeof block.scrollIntoView === "function") {
     block.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -90,9 +100,7 @@ function scrollToScale(scaleName) {
 
 // ===== 4) STORAGE =====
 function uuid() {
-  // modern browsers
   if (crypto && typeof crypto.randomUUID === "function") return crypto.randomUUID();
-  // fallback
   return "id-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 10);
 }
 
