@@ -42,7 +42,6 @@ function initLangButtons() {
     el.onclick = () => { setLang(k); paint(); };
   });
 
-  // If stored lang doesn't exist on this page, fallback to the first available
   const current = getLang();
   if (!available.some(([k]) => k === current)) setLang(available[0][0]);
 
@@ -105,34 +104,37 @@ function keepParams() {
   return params.toString();
 }
 
-async function copyToClipboard(text) {
-  const str = String(text || "");
-  try {
-    await navigator.clipboard.writeText(str);
-    return true;
-  } catch (e) {
-    try {
-      const ta = document.createElement("textarea");
-      ta.value = str;
-      ta.style.position = "fixed";
-      ta.style.left = "-9999px";
-      document.body.appendChild(ta);
-      ta.select();
-      document.execCommand("copy");
-      ta.remove();
-      return true;
-    } catch (e2) {
-      return false;
-    }
-  }
-}
-
-// IMPORTANT: language must be applied from URL before rendering
 function applyLangFromUrl() {
   const params = new URLSearchParams(window.location.search);
   const lang = params.get("lang");
-  if (lang === "de" || lang === "vi" || lang === "en") {
-    setLang(lang);
+  if (lang === "de" || lang === "vi" || lang === "en") setLang(lang);
+}
+
+async function copyToClipboard(text) {
+  const str = String(text || "");
+
+  // Modern clipboard API
+  try {
+    await navigator.clipboard.writeText(str);
+    return true;
+  } catch (_) {}
+
+  // Fallback without showing a visible field
+  try {
+    const ta = document.createElement("textarea");
+    ta.value = str;
+    ta.setAttribute("readonly", "");
+    ta.style.position = "fixed";
+    ta.style.top = "0";
+    ta.style.left = "-9999px";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand("copy");
+    ta.remove();
+    return true;
+  } catch (_) {
+    return false;
   }
 }
 
@@ -153,7 +155,7 @@ async function saveResponse(payload) {
   return res.json();
 }
 
-// ===== 6) PAGE WIRING (one motor for all pages) =====
+// ===== 6) PAGE WIRING =====
 function wireScaleButtons() {
   document.querySelectorAll("button.dot[data-scale]").forEach(btn => {
     btn.addEventListener("click", () => {
@@ -200,7 +202,7 @@ function wireSurveyForm() {
     try {
       await saveResponse(payload);
 
-      // Redirect with explicit lang so thanks page always matches
+      // IMPORTANT: keep language on thank-you page
       const lang = getLang();
       window.location.href = `thanks.html?lang=${encodeURIComponent(lang)}`;
     } catch (err) {
@@ -214,53 +216,48 @@ function wireSurveyForm() {
   });
 }
 
-function wireStartAndBackLinks() {
-  const qp = keepParams();
-  const lang = getLang();
-
-  const withLang = (base) => {
-    const parts = [];
-    if (qp) parts.push(qp);
-    parts.push("lang=" + encodeURIComponent(lang));
-    return base + "?" + parts.join("&");
-  };
-
-  const startBtn = $("startBtn");
-  if (startBtn) startBtn.href = withLang("survey.html");
-
-  const backBtn = $("backBtn");
-  if (backBtn) backBtn.href = withLang("index.html");
-}
-
-function wireThanksCopy() {
+function wireThanksCopyAndAutoBack() {
   const copyBtn = $("copyBtn");
   const voucherEl = $("voucher");
-  if (!copyBtn || !voucherEl) return;
+  const hint = $("copyHint");
+  const backBtn = $("backBtn");
 
-  copyBtn.addEventListener("click", async () => {
-    await copyToClipboard(voucherEl.textContent || "");
-    alert(t({ de: "Kopiert!", vi: "Đã sao chép!", en: "Copied!" }));
-  });
+  // Only on thanks page
+  if (!voucherEl || !backBtn) return;
+
+  const lang = getLang();
+  backBtn.href = `survey.html?lang=${encodeURIComponent(lang)}`;
+
+  if (copyBtn && voucherEl) {
+    copyBtn.addEventListener("click", async () => {
+      const ok = await copyToClipboard(voucherEl.textContent || "");
+      if (hint) {
+        hint.textContent = ok
+          ? t({ de: "Kopiert.", vi: "Đã sao chép.", en: "Copied." })
+          : t({ de: "Konnte nicht kopieren.", vi: "Không thể sao chép.", en: "Could not copy." });
+      }
+    });
+  }
+
+  // Auto-redirect back to survey after 2.5s
+  setTimeout(() => {
+    window.location.href = `survey.html?lang=${encodeURIComponent(lang)}`;
+  }, 2500);
 }
 
 // ===== 7) MOTOR =====
 window.addEventListener("DOMContentLoaded", () => {
-  applyLangFromUrl();     // MUST run first
-  initLangButtons();      // includes renderI18n()
-  wireStartAndBackLinks();
+  applyLangFromUrl();   // MUST run first
+  initLangButtons();    // includes renderI18n()
   wireScaleButtons();
   wireSurveyForm();
-  wireThanksCopy();
+  wireThanksCopyAndAutoBack();
 });
 
-// Export for optional HTML calls
+// Export (optional)
 window.Ginseng = {
-  // language
   getLang, setLang, initLangButtons, renderI18n, t,
-  // form
   setScale, collectForm,
-  // storage
   saveResponse, uuid,
-  // helpers
   keepParams, copyToClipboard, applyLangFromUrl
 };
