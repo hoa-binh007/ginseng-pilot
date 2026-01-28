@@ -9,40 +9,35 @@
 <body>
   <div class="wrap">
     <div class="row">
-      <div class="small" data-vi="Hoàn tất" data-en="Done"></div>
+      <div class="small" data-de="Fertig" data-vi="Hoàn tất" data-en="Done"></div>
       <div class="lang">
+        <button id="btnDe" type="button">🇩🇪</button>
         <button id="btnVi" type="button">🇻🇳</button>
         <button id="btnEn" type="button">🇬🇧</button>
       </div>
     </div>
 
     <div class="card">
-      <h1 data-vi="Cảm ơn bạn!" data-en="Thank you!"></h1>
-      <p data-vi="Bạn đã hoàn thành khảo sát." data-en="You have completed the survey."></p>
+      <h1 data-de="Danke!" data-vi="Cảm ơn bạn!" data-en="Thank you!"></h1>
+      <p data-de="Du hast die Umfrage abgeschlossen." data-vi="Bạn đã hoàn thành khảo sát." data-en="You have completed the survey."></p>
 
-      <h2 data-vi="Mã ưu đãi" data-en="Voucher code"></h2>
+      <h2 data-de="Gutschein-Code" data-vi="Mã ưu đãi" data-en="Voucher code"></h2>
       <div class="code">
         <span id="voucher">PILOT10</span>
-        <button type="button" id="copyBtn" data-vi="Sao chép" data-en="Copy"></button>
+        <button type="button" id="copyBtn" data-de="Kopieren" data-vi="Sao chép" data-en="Copy"></button>
       </div>
-      <p class="small" data-vi="Dùng khi sản phẩm ra mắt (áp dụng cho hộp 10 viên)."
+      <p class="small"
+         data-de="Gültig zum Launch (für die 10er-Box)."
+         data-vi="Dùng khi sản phẩm ra mắt (áp dụng cho hộp 10 viên)."
          data-en="Use at launch (applies to the 10-pack)."></p>
 
-      <a class="btn" id="backBtn" href="index.html" data-vi="Về trang đầu" data-en="Back to start"></a>
+      <a class="btn" id="backBtn" href="index.html"
+         data-de="Zur Startseite"
+         data-vi="Về trang đầu"
+         data-en="Back to start"></a>
     </div>
   </div>
 
   <script src="app.js"></script>
-  <script>
-    Ginseng.initLangButtons();
-    Ginseng.renderI18n();
-
-    document.getElementById("copyBtn").addEventListener("click", () => {
-      Ginseng.copyToClipboard(document.getElementById("voucher").textContent);
-      alert(Ginseng.t({vi:"Đã sao chép!", en:"Copied!"}));
-    });
-
-    document.getElementById("backBtn").href = "index.html?" + Ginseng.keepParams();
-  </script>
 </body>
 </html>
