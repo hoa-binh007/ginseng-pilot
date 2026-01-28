@@ -19,22 +19,31 @@
 
     <div class="card">
       <h1 data-de="Danke!" data-vi="Cảm ơn bạn!" data-en="Thank you!"></h1>
-      <p data-de="Du hast die Umfrage abgeschlossen." data-vi="Bạn đã hoàn thành khảo sát." data-en="You have completed the survey."></p>
+      <p data-de="Du hast die Umfrage abgeschlossen."
+         data-vi="Bạn đã hoàn thành khảo sát."
+         data-en="You have completed the survey."></p>
 
       <h2 data-de="Gutschein-Code" data-vi="Mã ưu đãi" data-en="Voucher code"></h2>
+
       <div class="code">
         <span id="voucher">PILOT10</span>
-        <button type="button" id="copyBtn" data-de="Kopieren" data-vi="Sao chép" data-en="Copy"></button>
+        <button type="button" id="copyBtn"
+                data-de="Kopieren" data-vi="Sao chép" data-en="Copy"></button>
       </div>
-      <p class="small"
-         data-de="Gültig zum Launch (für die 10er-Box)."
-         data-vi="Dùng khi sản phẩm ra mắt (áp dụng cho hộp 10 viên)."
-         data-en="Use at launch (applies to the 10-pack)."></p>
 
-      <a class="btn" id="backBtn" href="index.html"
-         data-de="Zur Startseite"
-         data-vi="Về trang đầu"
-         data-en="Back to start"></a>
+      <!-- Kleine, unaufdringliche Rückmeldung statt Alert -->
+      <p class="small" id="copyHint" style="min-height:1.2em; opacity:0.85;"></p>
+
+      <p class="small"
+         data-de="Du wirst gleich zur nächsten Umfrage weitergeleitet."
+         data-vi="Sẽ tự động chuyển về khảo sát tiếp theo."
+         data-en="You will be redirected to the next survey shortly."></p>
+
+      <!-- Manuell, falls Auto-Redirect blockiert -->
+      <a class="btn" id="backBtn" href="survey.html"
+         data-de="Nächste Umfrage starten"
+         data-vi="Bắt đầu khảo sát tiếp theo"
+         data-en="Start next survey"></a>
     </div>
   </div>
 
