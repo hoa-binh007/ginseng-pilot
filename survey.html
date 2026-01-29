@@ -1,4 +1,3 @@
-<!-- survey.html — FINAL v2.1 (kurz & schmal + Repurchase + Gründe + Mundgefühl + Alter + Ginseng bekannt) -->
 <!doctype html>
 <html lang="vi">
 <head>
@@ -22,23 +21,33 @@
     <div class="pilot-meta" style="margin:12px 0; padding:12px; border:1px solid #333; border-radius:10px;">
       <div style="display:flex; gap:10px; flex-wrap:wrap;">
         <label style="flex:1; min-width:160px;">
-          <div style="font-weight:600; margin-bottom:6px;" data-de="Rolle (optional)" data-vi="Vai trò (tùy chọn)" data-en="Role (optional)"></div>
+          <div style="font-weight:600; margin-bottom:6px;"
+               data-de="Rolle (optional)"
+               data-vi="Vai trò (tùy chọn)"
+               data-en="Role (optional)"></div>
+
           <select id="role" style="width:100%; padding:8px;">
             <option value="" data-de="(überspringen)" data-vi="(bỏ qua)" data-en="(skip)"></option>
             <option value="consumer" data-de="Konsument" data-vi="Người dùng" data-en="Consumer"></option>
             <option value="expert" data-de="Experte" data-vi="Chuyên gia" data-en="Expert"></option>
+            <option value="internal" data-de="Intern (Firma)" data-vi="Nội bộ (công ty)" data-en="Internal (company)"></option>
           </select>
         </label>
 
         <label style="flex:1; min-width:160px;">
-          <div style="font-weight:600; margin-bottom:6px;" data-de="Stadt (optional)" data-vi="Thành phố (tùy chọn)" data-en="City (optional)"></div>
+          <div style="font-weight:600; margin-bottom:6px;"
+               data-de="Stadt (optional)"
+               data-vi="Thành phố (tùy chọn)"
+               data-en="City (optional)"></div>
+
           <select id="city" style="width:100%; padding:8px;">
             <option value="" data-de="(überspringen)" data-vi="(bỏ qua)" data-en="(skip)"></option>
+
             <option value="Germany" data-de="Deutschland" data-vi="Đức" data-en="Germany"></option>
             <option value="Korea" data-de="Korea" data-vi="Hàn Quốc" data-en="Korea"></option>
-            <option value="internal" data-de="Intern (Firma)" data-vi="Nội bộ (công ty)" data-en="Internal (company)"></option>
             <option value="Seoul">Seoul</option>
             <option value="Busan">Busan</option>
+
             <option value="Saigon">Saigon</option>
             <option value="DaLat">Da Lat</option>
             <option value="Hue">Huế</option>
@@ -47,7 +56,11 @@
           </select>
         </label>
       </div>
-      <div style="margin-top:8px; font-size:0.9em; opacity:0.8;" data-de="Hilft uns beim Vergleich der Standorte." data-vi="Giúp chúng tôi so sánh giữa các thành phố." data-en="Helps us compare cities/experts."></div>
+
+      <div style="margin-top:8px; font-size:0.9em; opacity:0.8;"
+           data-de="Hilft uns beim Vergleich der Standorte."
+           data-vi="Giúp chúng tôi so sánh giữa các thành phố."
+           data-en="Helps us compare cities/experts."></div>
     </div>
 
     <div class="card">
@@ -62,10 +75,11 @@
       <form id="surveyForm">
 
         <!-- =========================
-             BLOCK A — BASIS (short)
+             PART A — BASIS (NEW)
         ========================== -->
         <h2 data-de="TEIL A – BASIS" data-vi="PHẦN A – THÔNG TIN CƠ BẢN" data-en="PART A – BASICS"></h2>
 
+        <!-- A1 age range -->
         <div class="q">
           <div class="q-title" data-de="A1. Altersspanne" data-vi="A1. Nhóm tuổi" data-en="A1. Age range"></div>
           <div class="choices">
@@ -78,8 +92,12 @@
           </div>
         </div>
 
+        <!-- A2 habit -->
         <div class="q">
-          <div class="q-title" data-de="A2. Was trinken Sie normalerweise regelmäßig?" data-vi="A2. Bạn thường uống gì?" data-en="A2. What do you usually drink?"></div>
+          <div class="q-title"
+               data-de="A2. Was trinken Sie normalerweise regelmäßig?"
+               data-vi="A2. Bạn thường uống gì?"
+               data-en="A2. What do you usually drink?"></div>
           <div class="choices">
             <label class="choice"><input type="radio" name="a2_habit" value="coffee" required><span data-de="Kaffee" data-vi="Cà phê" data-en="Coffee"></span></label>
             <label class="choice"><input type="radio" name="a2_habit" value="tea"><span data-de="Tee" data-vi="Trà" data-en="Tea"></span></label>
@@ -88,8 +106,12 @@
           </div>
         </div>
 
+        <!-- A3 ginseng known -->
         <div class="q">
-          <div class="q-title" data-de="A3. Hatten Sie vorher Erfahrung mit Ginseng(-Getränken)?" data-vi="A3. Bạn đã từng dùng đồ uống nhân sâm chưa?" data-en="A3. Have you had ginseng drink experience before?"></div>
+          <div class="q-title"
+               data-de="A3. Hatten Sie vorher Erfahrung mit Ginseng(-Getränken)?"
+               data-vi="A3. Bạn đã từng dùng đồ uống nhân sâm chưa?"
+               data-en="A3. Have you had ginseng drink experience before?"></div>
           <div class="choices">
             <label class="choice"><input type="radio" name="a3_ginsengKnown" value="yes" required><span data-de="Ja" data-vi="Có" data-en="Yes"></span></label>
             <label class="choice"><input type="radio" name="a3_ginsengKnown" value="no"><span data-de="Nein" data-vi="Không" data-en="No"></span></label>
@@ -97,9 +119,9 @@
         </div>
 
         <!-- =========================
-             BLOCK B — TASTE / FEEL
+             PART B — PERCEPTION (existing, plus mouthfeel)
         ========================== -->
-        <h2 data-de="TEIL B – GESCHMACK & MUNDGEFÜHL" data-vi="PHẦN B – VỊ & CẢM GIÁC MIỆNG" data-en="PART B – TASTE & MOUTHFEEL"></h2>
+        <h2 data-de="TEIL B – WAHRNEHMUNG" data-vi="PHẦN B – CẢM NHẬN" data-en="PART B – PERCEPTION"></h2>
 
         <div class="q">
           <div class="q-title" data-de="B1. Bitterer Geschmack" data-vi="B1. Vị đắng" data-en="B1. Bitter taste"></div>
@@ -121,7 +143,7 @@
           </div>
         </div>
 
-        <!-- NEW (v2.1): Mouthfeel / Aftertaste separate from bitter -->
+        <!-- NEW: mouthfeel/aftertaste scale -->
         <div class="q" data-qscale="q2b_mouthfeel">
           <div class="q-title"
                data-de="B3. Nachgeschmack / Mundgefühl (1 = sehr unangenehm, 5 = sehr angenehm)"
@@ -166,7 +188,7 @@
         </div>
 
         <!-- =========================
-             BLOCK C — PRICE & VALUE (Van-Westendorp-ish perception items)
+             PART C — PRICE & VALUE (existing Q6–Q9)
         ========================== -->
         <h2 data-de="TEIL C – PREIS & WERT" data-vi="PHẦN C – GIÁ & GIÁ TRỊ" data-en="PART C – PRICE & VALUE"></h2>
         <p class="small"
@@ -235,7 +257,7 @@
         </div>
 
         <!-- =========================
-             BLOCK D — REPURCHASE (NEW)
+             PART D — REPURCHASE (NEW)
         ========================== -->
         <h2 data-de="TEIL D – WIEDERKONSUM" data-vi="PHẦN D – UỐNG LẠI" data-en="PART D – REPURCHASE"></h2>
 
@@ -280,7 +302,7 @@
         </div>
 
         <!-- =========================
-             BLOCK E — BUYING (keep your existing)
+             PART E — BUYING (your existing)
         ========================== -->
         <h2 data-de="TEIL E – KAUFVERHALTEN" data-vi="PHẦN E – MUA HÀNG" data-en="PART E – BUYING"></h2>
 
@@ -314,7 +336,7 @@
         </div>
 
         <!-- =========================
-             BLOCK F — SOCIO-ECONOMIC (keep)
+             PART F — OPTIONAL (your existing)
         ========================== -->
         <h2 data-de="TEIL F – OPTIONAL" data-vi="PHẦN F – TÙY CHỌN" data-en="PART F – OPTIONAL"></h2>
 
@@ -329,7 +351,7 @@
         </div>
 
         <div class="q" data-qscale="q14_spend">
-          <div class="q-title" data-de="F2. Ausgaben für Gesundheit / Monat (1 = niedrig, 4 = hoch)" data-vi="F2. Chi cho sức khỏe / tháng (1 = thấp, 4 = cao)" data-en="F2. Health spending / month (1 = low, 4 = high)"></div>
+          <div class="q-title" data-de="F2. Ausgaben für Gesundheit / Monat" data-vi="F2. Chi cho sức khỏe / tháng" data-en="F2. Health spending / month"></div>
           <input type="hidden" name="q14_spend" value="">
           <div class="scale">
             <button class="dot" type="button" data-scale="q14_spend" data-value="1">1</button>
