@@ -1,5 +1,3 @@
-// app.js — FINAL v2.1 (adds: age/habit/ginsengKnown, mouthfeel scale, repurchase + conditional reasons, checkbox collection fix)
-
 const LANG_KEY = "ginseng_lang";
 const FIREBASE_DB_URL = "https://rote-ginseng-vn-default-rtdb.europe-west1.firebasedatabase.app";
 
@@ -50,17 +48,18 @@ function initLangButtons() {
   paint();
 }
 
-// ===== 2) FORM =====
+// ===== 2) FORM HELPERS =====
 function updateReasonsVisibility(repValue) {
   const block = $("q16_block");
   if (!block) return;
 
   const v = Number(repValue || 0);
-  const shouldShow = v > 0 && v <= 3; // show reasons only if 1-3
+  const shouldShow = v > 0 && v <= 3;
+
   block.style.display = shouldShow ? "" : "none";
 
-  // If hiding, clear checkbox + text
   if (!shouldShow) {
+    // Clear reasons & other text
     block.querySelectorAll('input[type="checkbox"][name="q16_reason"]').forEach(cb => { cb.checked = false; });
     const otherChk = $("q16_otherChk");
     const otherTxt = $("q16_otherText");
@@ -84,7 +83,6 @@ function setScale(scaleName, value) {
     btn.setAttribute("aria-pressed", active ? "true" : "false");
   });
 
-  // v2.1 conditional logic
   if (scaleName === "q15_repurchase") {
     updateReasonsVisibility(value);
   }
@@ -96,7 +94,6 @@ function collectForm(formEl) {
     city: $("city")?.value || "not_set"
   };
 
-  // Collect inputs safely (including multi-checkbox)
   formEl.querySelectorAll("input, select, textarea").forEach(el => {
     if (!el.name) return;
 
@@ -114,7 +111,6 @@ function collectForm(formEl) {
     data[el.name] = el.value || "";
   });
 
-  // If q16_otherChk checked, keep q16_otherText; else clear it
   const otherChk = $("q16_otherChk");
   const otherTxt = $("q16_otherText");
   if (otherChk && otherTxt && !otherChk.checked) {
@@ -141,11 +137,6 @@ function scrollToScale(scaleName) {
 }
 
 // ===== 4) HELPERS =====
-function keepParams() {
-  const params = new URLSearchParams(window.location.search);
-  return params.toString();
-}
-
 function applyLangFromUrl() {
   const params = new URLSearchParams(window.location.search);
   const lang = params.get("lang");
@@ -154,7 +145,6 @@ function applyLangFromUrl() {
 
 async function copyToClipboard(text) {
   const str = String(text || "");
-
   try {
     await navigator.clipboard.writeText(str);
     return true;
@@ -230,7 +220,7 @@ function wireSurveyForm() {
       return;
     }
 
-    // v2.1: validate ALL hidden scales (price + mouthfeel + repurchase + health spend)
+    // Validate all hidden scales (NEW + existing)
     const missing = firstMissingHiddenScale(form, [
       "q2b_mouthfeel",
       "q6_tooCheap", "q7_goodValue", "q8_expOk", "q9_tooExp",
@@ -241,14 +231,14 @@ function wireSurveyForm() {
     if (missing) {
       scrollToScale(missing);
       alert(t({
-        de: "Bitte beantworte auch die Skalen-Fragen (mit 1–5 bzw. 1–4).",
+        de: "Bitte beantworte auch die Skalen-Fragen (1–5 bzw. 1–4).",
         vi: "Vui lòng trả lời các câu thang điểm (1–5 hoặc 1–4).",
         en: "Please answer the scale questions (1–5 or 1–4)."
       }));
       return;
     }
 
-    // If repurchase low (1-3), require at least ONE reason selected
+    // If repurchase low (1-3), require at least one reason
     const rep = Number(form.querySelector('input[type="hidden"][name="q15_repurchase"]')?.value || 0);
     if (rep > 0 && rep <= 3) {
       const anyReason = Array.from(form.querySelectorAll('input[type="checkbox"][name="q16_reason"]'))
@@ -322,12 +312,12 @@ function wireThanksCopyAndAutoBack() {
 
 // ===== 7) MOTOR =====
 window.addEventListener("DOMContentLoaded", () => {
-  applyLangFromUrl();   // MUST run first
-  initLangButtons();    // includes renderI18n()
+  applyLangFromUrl();
+  initLangButtons();
   wireScaleButtons();
   wireOtherReasonToggle();
 
-  // Ensure reasons hidden initially until repurchase chosen
+  // ensure reasons hidden initially
   updateReasonsVisibility(0);
 
   wireSurveyForm();
@@ -339,5 +329,5 @@ window.Ginseng = {
   getLang, setLang, initLangButtons, renderI18n, t,
   setScale, collectForm,
   saveResponse, uuid,
-  keepParams, copyToClipboard, applyLangFromUrl
+  copyToClipboard, applyLangFromUrl
 };
