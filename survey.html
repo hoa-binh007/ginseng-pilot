@@ -1,3 +1,4 @@
+<!-- survey.html — FINAL v2.1 (kurz & schmal + Repurchase + Gründe + Mundgefühl + Alter + Ginseng bekannt) -->
 <!doctype html>
 <html lang="vi">
 <head>
@@ -46,9 +47,9 @@
     </div>
 
     <div class="card">
-      <h1 data-de="Schnellumfrage (14 Fragen + 2 optionale Angaben)"
-          data-vi="Khảo sát nhanh (14 câu + 2 mục tùy chọn)"
-          data-en="Quick survey (14 questions + 2 optional fields)"></h1>
+      <h1 data-de="Schnellumfrage (Final v2.1)"
+          data-vi="Khảo sát nhanh (Bản cuối v2.1)"
+          data-en="Quick survey (Final v2.1)"></h1>
 
       <p data-de="Anonym. Schnell tippen."
          data-vi="Chọn nhanh. Ẩn danh."
@@ -56,10 +57,48 @@
 
       <form id="surveyForm">
 
-        <h2 data-de="TEIL A – WAHRNEHMUNG" data-vi="PHẦN A – CẢM NHẬN" data-en="PART A – PERCEPTION"></h2>
+        <!-- =========================
+             BLOCK A — BASIS (short)
+        ========================== -->
+        <h2 data-de="TEIL A – BASIS" data-vi="PHẦN A – THÔNG TIN CƠ BẢN" data-en="PART A – BASICS"></h2>
 
         <div class="q">
-          <div class="q-title" data-de="Q1. Bitterer Geschmack" data-vi="Q1. Vị đắng" data-en="Q1. Bitter taste"></div>
+          <div class="q-title" data-de="A1. Altersspanne" data-vi="A1. Nhóm tuổi" data-en="A1. Age range"></div>
+          <div class="choices">
+            <label class="choice"><input type="radio" name="a1_age" value="u18" required><span data-de="Unter 18" data-vi="Dưới 18" data-en="Under 18"></span></label>
+            <label class="choice"><input type="radio" name="a1_age" value="18_24"><span data-de="18–24" data-vi="18–24" data-en="18–24"></span></label>
+            <label class="choice"><input type="radio" name="a1_age" value="25_34"><span data-de="25–34" data-vi="25–34" data-en="25–34"></span></label>
+            <label class="choice"><input type="radio" name="a1_age" value="35_44"><span data-de="35–44" data-vi="35–44" data-en="35–44"></span></label>
+            <label class="choice"><input type="radio" name="a1_age" value="45_54"><span data-de="45–54" data-vi="45–54" data-en="45–54"></span></label>
+            <label class="choice"><input type="radio" name="a1_age" value="55p"><span data-de="55+" data-vi="55+" data-en="55+"></span></label>
+          </div>
+        </div>
+
+        <div class="q">
+          <div class="q-title" data-de="A2. Was trinken Sie normalerweise regelmäßig?" data-vi="A2. Bạn thường uống gì?" data-en="A2. What do you usually drink?"></div>
+          <div class="choices">
+            <label class="choice"><input type="radio" name="a2_habit" value="coffee" required><span data-de="Kaffee" data-vi="Cà phê" data-en="Coffee"></span></label>
+            <label class="choice"><input type="radio" name="a2_habit" value="tea"><span data-de="Tee" data-vi="Trà" data-en="Tea"></span></label>
+            <label class="choice"><input type="radio" name="a2_habit" value="both"><span data-de="Beides" data-vi="Cả hai" data-en="Both"></span></label>
+            <label class="choice"><input type="radio" name="a2_habit" value="neither"><span data-de="Keines von beidem" data-vi="Không uống cả hai" data-en="Neither"></span></label>
+          </div>
+        </div>
+
+        <div class="q">
+          <div class="q-title" data-de="A3. Hatten Sie vorher Erfahrung mit Ginseng(-Getränken)?" data-vi="A3. Bạn đã từng dùng đồ uống nhân sâm chưa?" data-en="A3. Have you had ginseng drink experience before?"></div>
+          <div class="choices">
+            <label class="choice"><input type="radio" name="a3_ginsengKnown" value="yes" required><span data-de="Ja" data-vi="Có" data-en="Yes"></span></label>
+            <label class="choice"><input type="radio" name="a3_ginsengKnown" value="no"><span data-de="Nein" data-vi="Không" data-en="No"></span></label>
+          </div>
+        </div>
+
+        <!-- =========================
+             BLOCK B — TASTE / FEEL
+        ========================== -->
+        <h2 data-de="TEIL B – GESCHMACK & MUNDGEFÜHL" data-vi="PHẦN B – VỊ & CẢM GIÁC MIỆNG" data-en="PART B – TASTE & MOUTHFEEL"></h2>
+
+        <div class="q">
+          <div class="q-title" data-de="B1. Bitterer Geschmack" data-vi="B1. Vị đắng" data-en="B1. Bitter taste"></div>
           <div class="choices">
             <label class="choice"><input type="radio" name="q1_bitter" value="strong" required><span data-de="Stark" data-vi="Đắng rõ" data-en="Strong"></span></label>
             <label class="choice"><input type="radio" name="q1_bitter" value="mild"><span data-de="Mild" data-vi="Đắng nhẹ" data-en="Mild"></span></label>
@@ -69,7 +108,7 @@
         </div>
 
         <div class="q">
-          <div class="q-title" data-de="Q2. Leichter süßer Nachgeschmack?" data-vi="Q2. Hậu vị ngọt nhẹ?" data-en="Q2. Slight sweet aftertaste?"></div>
+          <div class="q-title" data-de="B2. Leichter süßer Nachgeschmack?" data-vi="B2. Hậu vị ngọt nhẹ?" data-en="B2. Slight sweet aftertaste?"></div>
           <div class="choices">
             <label class="choice"><input type="radio" name="q2_sweet" value="yes" required><span data-de="Ja" data-vi="Có" data-en="Yes"></span></label>
             <label class="choice"><input type="radio" name="q2_sweet" value="little"><span data-de="Ein bisschen" data-vi="Có một chút" data-en="A little"></span></label>
@@ -78,8 +117,24 @@
           </div>
         </div>
 
+        <!-- NEW (v2.1): Mouthfeel / Aftertaste separate from bitter -->
+        <div class="q" data-qscale="q2b_mouthfeel">
+          <div class="q-title"
+               data-de="B3. Nachgeschmack / Mundgefühl (1 = sehr unangenehm, 5 = sehr angenehm)"
+               data-vi="B3. Hậu vị / cảm giác miệng (1 = rất khó chịu, 5 = rất dễ chịu)"
+               data-en="B3. Aftertaste / mouthfeel (1 = very unpleasant, 5 = very pleasant)"></div>
+          <input type="hidden" name="q2b_mouthfeel" value="">
+          <div class="scale">
+            <button class="dot" type="button" data-scale="q2b_mouthfeel" data-value="1">1</button>
+            <button class="dot" type="button" data-scale="q2b_mouthfeel" data-value="2">2</button>
+            <button class="dot" type="button" data-scale="q2b_mouthfeel" data-value="3">3</button>
+            <button class="dot" type="button" data-scale="q2b_mouthfeel" data-value="4">4</button>
+            <button class="dot" type="button" data-scale="q2b_mouthfeel" data-value="5">5</button>
+          </div>
+        </div>
+
         <div class="q">
-          <div class="q-title" data-de="Q3. Mehr Speichelfluss?" data-vi="Q3. Nhiều nước bọt hơn?" data-en="Q3. More saliva?"></div>
+          <div class="q-title" data-de="B4. Mehr Speichelfluss?" data-vi="B4. Nhiều nước bọt hơn?" data-en="B4. More saliva?"></div>
           <div class="choices">
             <label class="choice"><input type="radio" name="q3_saliva" value="yes_clear" required><span data-de="Ja, deutlich" data-vi="Có, rõ" data-en="Yes, clearly"></span></label>
             <label class="choice"><input type="radio" name="q3_saliva" value="yes_light"><span data-de="Ja, leicht" data-vi="Có, nhẹ" data-en="Yes, a little"></span></label>
@@ -89,7 +144,7 @@
         </div>
 
         <div class="q">
-          <div class="q-title" data-de="Q4. Gesamteindruck" data-vi="Q4. Cảm nhận chung" data-en="Q4. Overall perception"></div>
+          <div class="q-title" data-de="B5. Gesamteindruck" data-vi="B5. Cảm nhận chung" data-en="B5. Overall perception"></div>
           <div class="choices">
             <label class="choice"><input type="radio" name="q4_type" value="health_machine" required><span data-de="Gesundheitsgetränk (Maschine)" data-vi="Đồ uống sức khỏe (máy)" data-en="Health drink (machine)"></span></label>
             <label class="choice"><input type="radio" name="q4_type" value="medicinal"><span data-de="Naturmedizin / Kräuter" data-vi="Dược liệu / thuốc Đông y" data-en="Herbal / medicinal"></span></label>
@@ -98,7 +153,7 @@
         </div>
 
         <div class="q">
-          <div class="q-title" data-de="Q5. Bevorzugte Servierform" data-vi="Q5. Bạn thích uống…" data-en="Q5. Preferred serving"></div>
+          <div class="q-title" data-de="B6. Bevorzugte Servierform" data-vi="B6. Bạn thích uống…" data-en="B6. Preferred serving"></div>
           <div class="choices">
             <label class="choice"><input type="radio" name="q5_temp" value="hot" required><span data-de="Heiß" data-vi="Nóng" data-en="Hot"></span></label>
             <label class="choice"><input type="radio" name="q5_temp" value="cold"><span data-de="Kalt / Eis" data-vi="Lạnh / Đá" data-en="Cold / with ice"></span></label>
@@ -106,8 +161,10 @@
           </div>
         </div>
 
-        <!-- PART B -->
-        <h2 data-de="TEIL B – PREIS & WERT" data-vi="PHẦN B – GIÁ & GIÁ TRỊ" data-en="PART B – PRICE & VALUE"></h2>
+        <!-- =========================
+             BLOCK C — PRICE & VALUE (Van-Westendorp-ish perception items)
+        ========================== -->
+        <h2 data-de="TEIL C – PREIS & WERT" data-vi="PHẦN C – GIÁ & GIÁ TRỊ" data-en="PART C – PRICE & VALUE"></h2>
         <p class="small"
            data-de="Stimme den Aussagen zu (1 = gar nicht, 5 = vollkommen)."
            data-vi="Mức độ đồng ý (1 = không đồng ý, 5 = hoàn toàn đồng ý)."
@@ -115,9 +172,9 @@
 
         <div class="q" data-qscale="q6_tooCheap">
           <div class="q-title"
-               data-de="Q6. Der Preis wirkt so niedrig, dass ich an der Qualität zweifle."
-               data-vi="Q6. Giá có vẻ quá thấp khiến tôi nghi ngờ về chất lượng."
-               data-en="Q6. The price seems so low that I doubt the quality."></div>
+               data-de="C1. Der Preis wirkt so niedrig, dass ich an der Qualität zweifle."
+               data-vi="C1. Giá có vẻ quá thấp khiến tôi nghi ngờ về chất lượng."
+               data-en="C1. The price seems so low that I doubt the quality."></div>
           <input type="hidden" name="q6_tooCheap" value="">
           <div class="scale">
             <button class="dot" type="button" data-scale="q6_tooCheap" data-value="1">1</button>
@@ -130,9 +187,9 @@
 
         <div class="q" data-qscale="q7_goodValue">
           <div class="q-title"
-               data-de="Q7. Für die erwartete Qualität ist der Preis fair."
-               data-vi="Q7. Với chất lượng tôi kỳ vọng, mức giá này là hợp lý."
-               data-en="Q7. For the quality I expect, the price is fair."></div>
+               data-de="C2. Für die erwartete Qualität ist der Preis fair."
+               data-vi="C2. Với chất lượng tôi kỳ vọng, mức giá này là hợp lý."
+               data-en="C2. For the quality I expect, the price is fair."></div>
           <input type="hidden" name="q7_goodValue" value="">
           <div class="scale">
             <button class="dot" type="button" data-scale="q7_goodValue" data-value="1">1</button>
@@ -145,9 +202,9 @@
 
         <div class="q" data-qscale="q8_expOk">
           <div class="q-title"
-               data-de="Q8. Der Preis wirkt eher hoch – ich würde es trotzdem kaufen."
-               data-vi="Q8. Giá có vẻ hơi cao – nhưng tôi vẫn sẽ mua."
-               data-en="Q8. The price seems rather high – but I would still buy it."></div>
+               data-de="C3. Der Preis wirkt eher hoch – ich würde es trotzdem kaufen."
+               data-vi="C3. Giá có vẻ hơi cao – nhưng tôi vẫn sẽ mua."
+               data-en="C3. The price seems rather high – but I would still buy it."></div>
           <input type="hidden" name="q8_expOk" value="">
           <div class="scale">
             <button class="dot" type="button" data-scale="q8_expOk" data-value="1">1</button>
@@ -160,9 +217,9 @@
 
         <div class="q" data-qscale="q9_tooExp">
           <div class="q-title"
-               data-de="Q9. Der Preis ist so hoch, dass ich es nicht kaufen würde."
-               data-vi="Q9. Giá cao đến mức tôi sẽ không mua."
-               data-en="Q9. The price is so high that I would not buy it."></div>
+               data-de="C4. Der Preis ist so hoch, dass ich es nicht kaufen würde."
+               data-vi="C4. Giá cao đến mức tôi sẽ không mua."
+               data-en="C4. The price is so high that I would not buy it."></div>
           <input type="hidden" name="q9_tooExp" value="">
           <div class="scale">
             <button class="dot" type="button" data-scale="q9_tooExp" data-value="1">1</button>
@@ -173,11 +230,58 @@
           </div>
         </div>
 
-        <!-- PART C -->
-        <h2 data-de="TEIL C – KAUFVERHALTEN" data-vi="PHẦN C – MUA HÀNG" data-en="PART C – BUYING"></h2>
+        <!-- =========================
+             BLOCK D — REPURCHASE (NEW)
+        ========================== -->
+        <h2 data-de="TEIL D – WIEDERKONSUM" data-vi="PHẦN D – UỐNG LẠI" data-en="PART D – REPURCHASE"></h2>
+
+        <div class="q" data-qscale="q15_repurchase">
+          <div class="q-title"
+               data-de="D1. Wie wahrscheinlich ist es, dass Sie dieses Getränk erneut trinken würden? (1 = sehr unwahrscheinlich, 5 = sehr wahrscheinlich)"
+               data-vi="D1. Bạn có khả năng sẽ uống lại thức uống này không? (1 = rất không có khả năng, 5 = rất có khả năng)"
+               data-en="D1. How likely are you to drink this again? (1 = very unlikely, 5 = very likely)"></div>
+          <input type="hidden" name="q15_repurchase" value="">
+          <div class="scale">
+            <button class="dot" type="button" data-scale="q15_repurchase" data-value="1">1</button>
+            <button class="dot" type="button" data-scale="q15_repurchase" data-value="2">2</button>
+            <button class="dot" type="button" data-scale="q15_repurchase" data-value="3">3</button>
+            <button class="dot" type="button" data-scale="q15_repurchase" data-value="4">4</button>
+            <button class="dot" type="button" data-scale="q15_repurchase" data-value="5">5</button>
+          </div>
+        </div>
+
+        <div class="q" id="q16_block" style="display:none;">
+          <div class="q-title"
+               data-de="D2. Wenn eher nicht: Warum? (Mehrfachauswahl)"
+               data-vi="D2. Nếu không: Vì sao? (Chọn nhiều)"
+               data-en="D2. If not likely: Why? (multi-select)"></div>
+          <div class="choices">
+            <label class="choice"><input type="checkbox" name="q16_reason" value="taste"><span data-de="Geschmack" data-vi="Vị" data-en="Taste"></span></label>
+            <label class="choice"><input type="checkbox" name="q16_reason" value="aftertaste"><span data-de="Nachgeschmack" data-vi="Hậu vị" data-en="Aftertaste"></span></label>
+            <label class="choice"><input type="checkbox" name="q16_reason" value="mouthfeel"><span data-de="Konsistenz / Mundgefühl" data-vi="Cảm giác miệng" data-en="Mouthfeel"></span></label>
+            <label class="choice"><input type="checkbox" name="q16_reason" value="unfamiliar"><span data-de="Zu ungewohnt / unbekannt" data-vi="Quá lạ / chưa quen" data-en="Too unfamiliar"></span></label>
+            <label class="choice"><input type="checkbox" name="q16_reason" value="coffeeTeaOnly"><span data-de="Ich trinke normalerweise nur Kaffee/Tee" data-vi="Tôi thường chỉ uống cà phê/trà" data-en="I usually only drink coffee/tea"></span></label>
+            <label class="choice"><input type="checkbox" name="q16_reason" value="noTrust"><span data-de="Kein Vertrauen in neue Getränke" data-vi="Không tin đồ uống mới" data-en="No trust in new drinks"></span></label>
+            <label class="choice"><input type="checkbox" name="q16_reason" value="price"><span data-de="Preis" data-vi="Giá" data-en="Price"></span></label>
+
+            <label class="choice" style="flex:1; min-width:220px;">
+              <input type="checkbox" name="q16_reason" value="other" id="q16_otherChk">
+              <span data-de="Sonstiges:" data-vi="Khác:" data-en="Other:"></span>
+            </label>
+            <input type="text" name="q16_otherText" id="q16_otherText"
+                   placeholder="..."
+                   style="width:100%; padding:10px; margin-top:8px; display:none;"
+                   autocomplete="off" />
+          </div>
+        </div>
+
+        <!-- =========================
+             BLOCK E — BUYING (keep your existing)
+        ========================== -->
+        <h2 data-de="TEIL E – KAUFVERHALTEN" data-vi="PHẦN E – MUA HÀNG" data-en="PART E – BUYING"></h2>
 
         <div class="q">
-          <div class="q-title" data-de="Q10. Konsumhäufigkeit" data-vi="Q10. Tần suất uống" data-en="Q10. Consumption frequency"></div>
+          <div class="q-title" data-de="E1. Konsumhäufigkeit" data-vi="E1. Tần suất uống" data-en="E1. Consumption frequency"></div>
           <div class="choices">
             <label class="choice"><input type="radio" name="q10_freq" value="daily" required><span data-de="Täglich" data-vi="Mỗi ngày" data-en="Daily"></span></label>
             <label class="choice"><input type="radio" name="q10_freq" value="2_3wk"><span data-de="2-3 mal pro Woche" data-vi="2–3 lần / tuần" data-en="2-3 times/week"></span></label>
@@ -187,7 +291,7 @@
         </div>
 
         <div class="q">
-          <div class="q-title" data-de="Q11. Bevorzugte Packung" data-vi="Q11. Bạn thích mua…" data-en="Q11. Preferred pack"></div>
+          <div class="q-title" data-de="E2. Bevorzugte Packung" data-vi="E2. Bạn thích mua…" data-en="E2. Preferred pack"></div>
           <div class="choices">
             <label class="choice"><input type="radio" name="q11_pack" value="single" required><span data-de="Einzelne Kapsel" data-vi="Từng viên" data-en="Single capsule"></span></label>
             <label class="choice"><input type="radio" name="q11_pack" value="box10"><span data-de="10er Box" data-vi="Hộp 10 viên" data-en="Box of 10"></span></label>
@@ -197,7 +301,7 @@
         </div>
 
         <div class="q">
-          <div class="q-title" data-de="Q12. Vertrauenswürdigster Kaufort" data-vi="Q12. Nơi tin tưởng nhất" data-en="Q12. Most trusted place"></div>
+          <div class="q-title" data-de="E3. Vertrauenswürdigster Kaufort" data-vi="E3. Nơi tin tưởng nhất" data-en="E3. Most trusted place"></div>
           <div class="choices">
             <label class="choice"><input type="radio" name="q12_channel" value="pharmacy" required><span data-de="Apotheke" data-vi="Nhà thuốc" data-en="Pharmacy"></span></label>
             <label class="choice"><input type="radio" name="q12_channel" value="supermarket"><span data-de="Supermarkt" data-vi="Siêu thị" data-en="Supermarket"></span></label>
@@ -205,11 +309,13 @@
           </div>
         </div>
 
-        <!-- PART D -->
-        <h2 data-de="TEIL D – OPTIONAL" data-vi="PHẦN D – TÙY CHỌN" data-en="PART D – OPTIONAL"></h2>
+        <!-- =========================
+             BLOCK F — SOCIO-ECONOMIC (keep)
+        ========================== -->
+        <h2 data-de="TEIL F – OPTIONAL" data-vi="PHẦN F – TÙY CHỌN" data-en="PART F – OPTIONAL"></h2>
 
         <div class="q">
-          <div class="q-title" data-de="Q13. Aktuelle Tätigkeit" data-vi="Q13. Bạn hiện làm…" data-en="Q13. Current occupation"></div>
+          <div class="q-title" data-de="F1. Aktuelle Tätigkeit" data-vi="F1. Bạn hiện làm…" data-en="F1. Current occupation"></div>
           <div class="choices">
             <label class="choice"><input type="radio" name="q13_work" value="office"><span data-de="Büroangestellter" data-vi="Nhân viên văn phòng" data-en="Office worker"></span></label>
             <label class="choice"><input type="radio" name="q13_work" value="self"><span data-de="Selbstständig" data-vi="Tự kinh doanh" data-en="Self-employed"></span></label>
@@ -219,7 +325,7 @@
         </div>
 
         <div class="q" data-qscale="q14_spend">
-          <div class="q-title" data-de="Q14. Ausgaben für Gesundheit / Monat" data-vi="Q14. Chi cho sức khỏe / tháng" data-en="Q14. Health spending / month"></div>
+          <div class="q-title" data-de="F2. Ausgaben für Gesundheit / Monat (1 = niedrig, 4 = hoch)" data-vi="F2. Chi cho sức khỏe / tháng (1 = thấp, 4 = cao)" data-en="F2. Health spending / month (1 = low, 4 = high)"></div>
           <input type="hidden" name="q14_spend" value="">
           <div class="scale">
             <button class="dot" type="button" data-scale="q14_spend" data-value="1">1</button>
