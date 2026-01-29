@@ -1,3 +1,5 @@
+// app.js — FINAL v2.1 (adds: age/habit/ginsengKnown, mouthfeel scale, repurchase + conditional reasons, checkbox collection fix)
+
 const LANG_KEY = "ginseng_lang";
 const FIREBASE_DB_URL = "https://rote-ginseng-vn-default-rtdb.europe-west1.firebasedatabase.app";
 
@@ -49,6 +51,27 @@ function initLangButtons() {
 }
 
 // ===== 2) FORM =====
+function updateReasonsVisibility(repValue) {
+  const block = $("q16_block");
+  if (!block) return;
+
+  const v = Number(repValue || 0);
+  const shouldShow = v > 0 && v <= 3; // show reasons only if 1-3
+  block.style.display = shouldShow ? "" : "none";
+
+  // If hiding, clear checkbox + text
+  if (!shouldShow) {
+    block.querySelectorAll('input[type="checkbox"][name="q16_reason"]').forEach(cb => { cb.checked = false; });
+    const otherChk = $("q16_otherChk");
+    const otherTxt = $("q16_otherText");
+    if (otherChk) otherChk.checked = false;
+    if (otherTxt) {
+      otherTxt.value = "";
+      otherTxt.style.display = "none";
+    }
+  }
+}
+
 function setScale(scaleName, value) {
   const hidden = document.querySelector(`input[type="hidden"][name="${scaleName}"]`);
   if (!hidden) return;
@@ -60,6 +83,11 @@ function setScale(scaleName, value) {
     btn.classList.toggle("active", active);
     btn.setAttribute("aria-pressed", active ? "true" : "false");
   });
+
+  // v2.1 conditional logic
+  if (scaleName === "q15_repurchase") {
+    updateReasonsVisibility(value);
+  }
 }
 
 function collectForm(formEl) {
@@ -68,6 +96,7 @@ function collectForm(formEl) {
     city: $("city")?.value || "not_set"
   };
 
+  // Collect inputs safely (including multi-checkbox)
   formEl.querySelectorAll("input, select, textarea").forEach(el => {
     if (!el.name) return;
 
@@ -76,8 +105,21 @@ function collectForm(formEl) {
       return;
     }
 
+    if (el.type === "checkbox") {
+      if (!data[el.name]) data[el.name] = [];
+      if (el.checked) data[el.name].push(el.value);
+      return;
+    }
+
     data[el.name] = el.value || "";
   });
+
+  // If q16_otherChk checked, keep q16_otherText; else clear it
+  const otherChk = $("q16_otherChk");
+  const otherTxt = $("q16_otherText");
+  if (otherChk && otherTxt && !otherChk.checked) {
+    data.q16_otherText = "";
+  }
 
   return data;
 }
@@ -113,13 +155,11 @@ function applyLangFromUrl() {
 async function copyToClipboard(text) {
   const str = String(text || "");
 
-  // Modern clipboard API
   try {
     await navigator.clipboard.writeText(str);
     return true;
   } catch (_) {}
 
-  // Fallback without showing a visible field
   try {
     const ta = document.createElement("textarea");
     ta.value = str;
@@ -164,6 +204,20 @@ function wireScaleButtons() {
   });
 }
 
+function wireOtherReasonToggle() {
+  const otherChk = $("q16_otherChk");
+  const otherTxt = $("q16_otherText");
+  if (!otherChk || !otherTxt) return;
+
+  const sync = () => {
+    otherTxt.style.display = otherChk.checked ? "" : "none";
+    if (!otherChk.checked) otherTxt.value = "";
+  };
+
+  otherChk.addEventListener("change", sync);
+  sync();
+}
+
 function wireSurveyForm() {
   const form = $("surveyForm");
   if (!form) return;
@@ -176,15 +230,40 @@ function wireSurveyForm() {
       return;
     }
 
-    const missing = firstMissingHiddenScale(form, ["q6_tooCheap", "q7_goodValue", "q8_expOk", "q9_tooExp"]);
+    // v2.1: validate ALL hidden scales (price + mouthfeel + repurchase + health spend)
+    const missing = firstMissingHiddenScale(form, [
+      "q2b_mouthfeel",
+      "q6_tooCheap", "q7_goodValue", "q8_expOk", "q9_tooExp",
+      "q15_repurchase",
+      "q14_spend"
+    ]);
+
     if (missing) {
       scrollToScale(missing);
       alert(t({
-        de: "Bitte beantworte auch die Preis-Fragen (Q6–Q9) mit 1–5.",
-        vi: "Vui lòng trả lời các câu về giá (Q6–Q9) bằng thang 1–5.",
-        en: "Please answer the price questions (Q6–Q9) using 1–5."
+        de: "Bitte beantworte auch die Skalen-Fragen (mit 1–5 bzw. 1–4).",
+        vi: "Vui lòng trả lời các câu thang điểm (1–5 hoặc 1–4).",
+        en: "Please answer the scale questions (1–5 or 1–4)."
       }));
       return;
+    }
+
+    // If repurchase low (1-3), require at least ONE reason selected
+    const rep = Number(form.querySelector('input[type="hidden"][name="q15_repurchase"]')?.value || 0);
+    if (rep > 0 && rep <= 3) {
+      const anyReason = Array.from(form.querySelectorAll('input[type="checkbox"][name="q16_reason"]'))
+        .some(cb => cb.checked);
+
+      if (!anyReason) {
+        const block = $("q16_block");
+        if (block) block.scrollIntoView({ behavior: "smooth", block: "center" });
+        alert(t({
+          de: "Bitte wähle mindestens einen Grund aus (D2).",
+          vi: "Vui lòng chọn ít nhất 1 lý do (D2).",
+          en: "Please select at least one reason (D2)."
+        }));
+        return;
+      }
     }
 
     const data = collectForm(form);
@@ -201,8 +280,6 @@ function wireSurveyForm() {
 
     try {
       await saveResponse(payload);
-
-      // IMPORTANT: keep language on thank-you page
       const lang = getLang();
       window.location.href = `thanks.html?lang=${encodeURIComponent(lang)}`;
     } catch (err) {
@@ -222,7 +299,6 @@ function wireThanksCopyAndAutoBack() {
   const hint = $("copyHint");
   const backBtn = $("backBtn");
 
-  // Only on thanks page
   if (!voucherEl || !backBtn) return;
 
   const lang = getLang();
@@ -239,7 +315,6 @@ function wireThanksCopyAndAutoBack() {
     });
   }
 
-  // Auto-redirect back to survey after 2.5s
   setTimeout(() => {
     window.location.href = `survey.html?lang=${encodeURIComponent(lang)}`;
   }, 2500);
@@ -250,6 +325,11 @@ window.addEventListener("DOMContentLoaded", () => {
   applyLangFromUrl();   // MUST run first
   initLangButtons();    // includes renderI18n()
   wireScaleButtons();
+  wireOtherReasonToggle();
+
+  // Ensure reasons hidden initially until repurchase chosen
+  updateReasonsVisibility(0);
+
   wireSurveyForm();
   wireThanksCopyAndAutoBack();
 });
